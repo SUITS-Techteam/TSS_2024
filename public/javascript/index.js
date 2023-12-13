@@ -294,35 +294,35 @@ function loadEVA(team){
     $.getJSON("json_data/teams/" + team + "/EVA.json", function( data ){
 
         // Formats the total time for the EVA
-        var h = Math.floor(data.EVA.Total_Time / 3600);
-        var m = Math.floor(data.EVA.Total_Time % 3600 / 60);
-        var s = Math.floor(data.EVA.Total_Time % 3600 % 60);
+        var h = Math.floor(data.eva.total_time / 3600);
+        var m = Math.floor(data.eva.total_time % 3600 / 60);
+        var s = Math.floor(data.eva.total_time % 3600 % 60);
         document.getElementById("evaTimer").innerText = "EVA Time: " + ("0"+h).slice(-2) + ":" + ("0"+m).slice(-2) + ":" + ("0"+s).slice(-2);
 
         // Formats the time for the UIA procedure
-        m = Math.floor(data.EVA.UIA.Time % 3600 / 60);
-        s = Math.floor(data.EVA.UIA.Time % 3600 % 60);
+        m = Math.floor(data.eva.uia.time % 3600 / 60);
+        s = Math.floor(data.eva.uia.time % 3600 % 60);
         document.getElementById("uiaTimer").innerText = ("0"+m).slice(-2) + ":" + ("0"+s).slice(-2);
 
         // Formats the time for the Spec procedure
-        m = Math.floor(data.EVA.SPEC.Time % 3600 / 60);
-        s = Math.floor(data.EVA.SPEC.Time % 3600 % 60);
+        m = Math.floor(data.eva.spec.time % 3600 / 60);
+        s = Math.floor(data.eva.spec.time % 3600 % 60);
         document.getElementById("specTimer").innerText = ("0"+m).slice(-2) + ":" + ("0"+s).slice(-2);
 
         // Formats the time for the DCU procedure
-        m = Math.floor(data.EVA.DCU.Time % 3600 / 60);
-        s = Math.floor(data.EVA.DCU.Time % 3600 % 60);
+        m = Math.floor(data.eva.dcu.time % 3600 / 60);
+        s = Math.floor(data.eva.dcu.time % 3600 % 60);
         document.getElementById("dcuTimer").innerText = ("0"+m).slice(-2) + ":" + ("0"+s).slice(-2);
 
         // Formats the time for the Rover procedure
-        m = Math.floor(data.EVA.ROVER.Time % 3600 / 60);
-        s = Math.floor(data.EVA.ROVER.Time % 3600 % 60);
+        m = Math.floor(data.eva.rover.time % 3600 / 60);
+        s = Math.floor(data.eva.rover.time % 3600 % 60);
         document.getElementById("rovTimer").innerText = ("0"+m).slice(-2) + ":" + ("0"+s).slice(-2);
 
         // Button UI States Visuals
-        var evaStarted  = data.EVA.Started;
-        var evaPaused   = data.EVA.Paused;
-        var evaComplete = data.EVA.Completed;
+        var evaStarted  = data.eva.started;
+        var evaPaused   = data.eva.paused;
+        var evaComplete = data.eva.completed;
         if (evaComplete || !evaStarted) {
             stopTSS();
         } 
@@ -350,10 +350,10 @@ function loadEVA(team){
         }
 
         // Stations Status
-        updateStationStatus(evaStarted, data.EVA.UIA.Started,   data.EVA.UIA.Completed,   uia, uiaStatus, uiaButton, uiaBullet, uiaFont, uiaName);
-        updateStationStatus(evaStarted, data.EVA.DCU.Started,   data.EVA.DCU.Completed,   dcu, dcuStatus, dcuButton, dcuBullet, dcuFont, dcuName);
-        updateStationStatus(evaStarted, data.EVA.ROVER.Started, data.EVA.ROVER.Completed, rov, rovStatus, rovButton, rovBullet, rovFont, rovName);
-        updateStationStatus(evaStarted, data.EVA.SPEC.Started,  data.EVA.SPEC.Completed,  spec, specStatus, specButton, specBullet, specFont, specName);
+        updateStationStatus(evaStarted, data.eva.uia.started,   data.eva.uia.completed,   uia, uiaStatus, uiaButton, uiaBullet, uiaFont, uiaName);
+        updateStationStatus(evaStarted, data.eva.dcu.started,   data.eva.dcu.completed,   dcu, dcuStatus, dcuButton, dcuBullet, dcuFont, dcuName);
+        updateStationStatus(evaStarted, data.eva.rover.started, data.eva.rover.completed, rov, rovStatus, rovButton, rovBullet, rovFont, rovName);
+        updateStationStatus(evaStarted, data.eva.spec.started,  data.eva.spec.completed,  spec, specStatus, specButton, specBullet, specFont, specName);
     });
 }
 
@@ -469,9 +469,9 @@ function loadLights(team) {
     $.getJSON("json_data/teams/" + team + "/EVA.json", function( data ){
 
         // Button UI States Visuals
-        var evaStarted  = data.EVA.Started;
-        var evaPaused   = data.EVA.Paused;
-        var evaComplete = data.EVA.Completed;
+        var evaStarted  = data.eva.started;
+        var evaPaused   = data.eva.paused;
+        var evaComplete = data.eva.completed;
 
         // Team light state
         var room = "room" + (team + 1) + "Light";

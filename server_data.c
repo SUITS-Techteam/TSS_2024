@@ -525,13 +525,13 @@ bool update_spec(char* request_content, struct spec_data_t* spec){
 
     // Check which variable needs to be updated
     if(strncmp(request_content, "eva1_rock_id=", strlen("eva1_rock_id=")) == 0) {
-        // Begin EVA with a new team
+        // Get Rock From EVA 1
         request_content += strlen("eva1_rock_id=");
         int rock_id = atoi(request_content);
         spec->eva1_rock_id = rock_id;
         printf("EVA1 Rock ID: %d\n", rock_id);
     } else if(strncmp(request_content, "eva2_rock_id=", strlen("eva2_rock_id=")) == 0) {
-        // Begin EVA with a new team
+        // Get Rock From EVA 2
         request_content += strlen("eva2_rock_id=");
         int rock_id = atoi(request_content);
         spec->eva2_rock_id = rock_id;
@@ -762,7 +762,11 @@ bool update_eva(char* request_content, struct backend_data_t* backend){
         request_content += strlen("end_team=");
         int team = atoi(request_content);
         if(team > NUMBER_OF_TEAMS) { return false; }
-        backend->evas[team].completed = true;
+        backend->evas[team].completed       = true;
+        backend->evas[team].completed_UIA   = true;
+        backend->evas[team].completed_DCU   = true;
+        backend->evas[team].completed_ROVER = true;
+        backend->evas[team].completed_SPEC  = true;
         build_json_eva(&backend->evas[team], team, false);
         build_json_eva(&backend->evas[team], team, true);
         build_json_telemetry(&backend->evas[team], team, true);
