@@ -1,0 +1,241 @@
+/* This CSS file is divided by section of the comm tower page. */
+/*                                                             */
+/* Sections are:                                               */
+/*              Main Page Data                                 */   
+/*                  COMM State                                 */
+/*                                                             */
+
+  
+  /******************************** Main Page Data CSS ********************************/
+  .roomDataContainer {
+    width: 100%;
+    margin: 1rem;
+    background-color: var(--darker-grey);
+    border-radius: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: row;
+  }
+  
+  .roomDataColumnContainer {
+    width: 100%;
+    height: 25%;
+    margin: .2rem;
+    border-radius: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .roomDataRowContainer {
+    width: 100%;
+    height: 25%;
+    margin: .2rem;
+    border-radius: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: row;
+  }
+  
+  .roomDataColumn {
+    width: 80%;
+    margin: .2rem;
+    border-radius: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .roomDataSubContainer {
+    background-color: var(--dark-grey);
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    margin: .5rem;
+    border-radius: 1rem;
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .roomDataTitleContainer {
+    font-size: 1.25rem;
+    margin: .5rem;
+    padding-bottom: .25rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+  
+  .roomDataTitle {
+    color: var(--white);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  
+  .roomDataSubTitleContainer {
+    font-size: .9rem;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    margin: .5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+  
+  .roomDataSubTitle {
+    color: var(--lighter-grey);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  
+  .roomDataMainBodyContainer {
+    width: 100%;
+    margin: .5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: row;
+  }
+  
+  .roomDataMainBodySubContainer {
+    width: 85%; 
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+  
+  
+  /**************** COMM State CSS ****************/
+  .commStateInfoContainer {
+    width: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  
+  .commSubTitle {
+    color: var(--white);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  
+  .commStateInfoTitle {
+    color: var(--white);
+    font-size: 1rem;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+  
+  .commStateInfo {
+    color: var(--white);
+    font-size: .85rem;
+    white-space: nowrap;
+  }
+  
+  .commStateSensorContainer {
+    width: 10%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+  
+  .commStateSensor {
+    background-color: var(--light-grey);
+    border-radius: 5rem;
+    height: 1rem;
+    width: 1rem;
+  }
+  
+  .commStateSensorContainer {
+    width: 10%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+  
+  .switch {
+    width: 2.95rem;
+    height: 1.25rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    position: relative; 
+    display: inline-block;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0rem;
+    height: 0rem;
+  }
+  
+  .slider {
+    background-color: var(--light-grey);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transition: .3s;
+    transition: .3s;
+    position: absolute;
+    cursor: pointer;
+  }
+  
+  .slider:before {
+    height: 1rem;
+    width: 1.25rem;
+    left: .15rem;
+    bottom: .12rem;
+    background-color: var(--white);
+    -webkit-transition: .3s;
+    transition: .3s;
+    position: absolute;
+    content: "";
+  }
+  
+  input:checked + .slider {
+    background-color: var(--light-green);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 .1rem var(--light-green);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(1.45rem);
+    -ms-transform: translateX(1.45rem);
+    transform: translateX(1.45rem);
+  }
+  
+  .slider.round {
+    border-radius: 1rem;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }

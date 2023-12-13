@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CAPCOM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./css/masterCSS.css">
+    <link rel="stylesheet" href="./css/evSpec.css">
+    <link rel="icon" href="./images/android-chrome-512x512.png">
+    <script src="./javascript/ev2Spec.js" ></script>
+    <script type="text/javascript" src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/web3@0.20.5/dist/web3.min.js"></script>
+  </head>
+
+  <body onload="onload()">
+
+    
+    <!------------------------------------------ Navigation Bar Section ------------------------------------------>
+    <nav>
+        <img class="logo" src="./images/android-chrome-512x512.png">
+        <span class="navBarTitle">
+            NASA S.U.I.T.S.
+        </span>
+        <span class="navBarSubTitle">
+            | CAPCOM |
+        </span>
+        <div class="navBarListContainer">
+            <ul class="navBarList">
+                <li>
+                    <a href="index.html" class="navBarListItem">Rooms</a>
+                </li>
+                <li>
+                    <a href="uia.html" class="navBarListItem">UIA</a>
+                </li>
+                <li>
+                    <a href="dcu.html" class="navBarListItem">DCU</a>
+                </li>
+                <li>
+                    <a href="rover.html" class="navBarListItem">Rover</a>
+                </li>
+                <li>
+                    <a href="spec.html" class="navBarListItem">Spec</a>
+                </li>
+                <li>
+                    <a href="telemetry.html" class="navBarListItem">Telemetry</a>
+                </li>
+                <li>
+                    <a href="commTower.html" class="navBarListItem">Comm Tower</a>
+                </li>
+            </ul>
+        </div>
+        <img class="logo" src="./images/android-chrome-512x512.png">
+    </nav>
+
+
+    <!------------------------------------------ Main Page Body Section ------------------------------------------>
+    <div class="pageBody">
+
+
+        <!------------------------------------------ Room Specific Data Section ------------------------------------------>
+        <div class="roomDataContainer">
+            <div class="roomDataColumnContainer">
+                <div class="roomDataRowContainer">
+
+
+                    <!------------------------------------------ EVA 2 Rock Section ------------------------------------------>
+                    <div class="roomDataColumn">
+                        <div class="roomDataSubContainer">
+                            <div class="roomDataTitleContainer">
+                                <span class="roomDataTitle">
+                                    EVA 2
+                                </span>
+                            </div>
+                            <!-- <div class="rockPictureContainer">
+                                <img class="rockPicture" src="./images/android-chrome-512x512.png">
+                            </div> -->
+                            <!-- <div class="roomDataSubTitleContainer">
+                                <div id="eva2_rock_name" class="roomDataSubTitle">
+                                    ----------
+                                </div>
+                            </div> -->
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="specNameContainer">
+                                        <span class="specDataTitle">
+                                            Data
+                                        </span>
+                                    </div>
+                                    <div class="specDataContainer">
+                                        <span class="specDataTitle">
+                                            Value
+                                        </span>
+                                    </div>
+                                    <div class="specNameContainer">
+                                        <span class="specDataTitle">
+                                            Data
+                                        </span>
+                                    </div>
+                                    <div class="specDataContainer">
+                                        <span class="specDataTitle">
+                                            Value
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="specNameContainer">
+                                        <span class="specData">
+                                            SiO2
+                                        </span>
+                                    </div>
+                                    <div class="specDataContainer">
+                                        <span id="eva2_sio2" class="specData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="specNameContainer">
+                                        <span class="specData">
+                                            TiO2
+                                        </span>
+                                    </div>
+                                    <div class="specDataContainer">
+                                        <span id="eva2_tio2" class="specData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="specNameContainer">
+                                        <span class="specData">
+                                            Al2O3
+                                        </span>
+                                    </div>
+                                    <div class="specDataContainer">
+                                        <span id="eva2_al2o3" class="specData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="specNameContainer">
+                                        <span class="specData">
+                                            FeO
+                                        </span>
+                                    </div>
+                                    <div class="specDataContainer">
+                                        <span id="eva2_feo" class="specData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="specNameContainer">
+                                        <span class="specData">
+                                            MnO
+                                        </span>
+                                    </div>
+                                    <div class="specDataContainer">
+                                        <span id="eva2_mno" class="specData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="specNameContainer">
+                                        <span class="specData">
+                                            MgO
+                                        </span>
+                                    </div>
+                                    <div class="specDataContainer">
+                                        <span id="eva2_mgo"class="specData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="specNameContainer">
+                                        <span class="specData">
+                                            CaO
+                                        </span>
+                                    </div>
+                                    <div class="specDataContainer">
+                                        <span id="eva2_cao" class="specData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="specNameContainer">
+                                        <span class="specData">
+                                            K2O
+                                        </span>
+                                    </div>
+                                    <div class="specDataContainer">
+                                        <span id="eva2_k2o" class="specData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="specNameContainer">
+                                        <span class="specData">
+                                            P2O3
+                                        </span>
+                                    </div>
+                                    <div class="specDataContainer">
+                                        <span id="eva2_p2o3" class="specData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="specNameContainer">
+                                        <span class="specData">
+                                            
+                                        </span>
+                                    </div>
+                                    <div class="specDataContainer">
+                                        <span class="specData">
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="roomDataRowContainer">
+                    <div class="roomDataColumn"> -->
+        
+
+                        <!------------------------------------------ Dropdown Section ------------------------------------------>
+                        <!-- <div class="roomDataSubContainer">
+                            <div class="roomDataMainBodyContainer">
+                                <form action="" method="post">
+                                    <div class="roomDataSubTitle">
+                                        Choose EVA 2 Rock:
+                                        <select class="dropdownText" id="dropdownEV2" name="spec_eva2_rock_id" onchange="this.form.submit()">
+                                            <option class="dropdownText" value="0">0</option>
+                                            <option class="dropdownText" value="1">1</option>
+                                            <option class="dropdownText" value="2">2</option>
+                                            <option class="dropdownText" value="3">3</option>
+                                            <option class="dropdownText" value="4">4</option>
+                                            <option class="dropdownText" value="5">5</option>
+                                            <option class="dropdownText" value="6">6</option>
+                                            <option class="dropdownText" value="7">7</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

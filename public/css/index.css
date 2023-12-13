@@ -1,0 +1,599 @@
+/* This CSS file is divided by section of the main page. */
+/*                                                       */
+/* Sections are:                                         */
+/*              Room List                                */
+/*              Room Data                                */   
+/*                  Telemetry                            */
+/*                  Telemetry State                      */
+/*                  Stations                             */
+/*                  UIA State                            */
+/*                  DCU State                            */
+/*                  Rover                                */
+/*                  GPS                                  */
+/*                                                       */
+
+
+/******************************** Room List CSS ********************************/
+.roomListContainer {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-top: 1rem; 
+  background-color: var(--darker-grey);
+  border-radius: 0rem 1rem 1rem 0rem;
+  width: 20%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.roomListTitle {
+  color: var(--white);
+  font-size: 1.5rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.roomListItemBody {
+  font-size: .75rem;
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  margin-top:.5rem;
+  background-color: var(--dark-grey);
+  border-radius: 1rem;
+  width: 95%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.roomListItemBody:hover {
+  background-color: var(--grey);
+  transition: 1s;
+}
+
+.roomListLightContainer {
+  width: 15%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.roomListLight {
+  background-color: var(--light-grey);
+  border-radius: 5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.roomListTeamNameContainer { 
+  width: 45%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.roomListTeamNameRoomNum {
+  color: var(--white);
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  font-weight: bold;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.roomListRoomNumContainer {
+  width: 25%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+/******************************** Room Data CSS ********************************/
+.roomDataContainer {
+  width: 80%;
+  margin: 1rem;
+  background-color: var(--darker-grey);
+  border-radius: 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.roomDataColumnContainer {
+  width: 100%;
+  height: 25%;
+  margin: .2rem;
+  border-radius: 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.roomDataRowContainer {
+  width: 100%;
+  height: 25%;
+  margin: .2rem;
+  border-radius: 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.roomDataColumn {
+  width: 50%;
+  margin: .2rem;
+  border-radius: 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.roomDataSubContainer {
+  background-color: var(--dark-grey);
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  margin: .5rem;
+  border-radius: 1rem;
+  width: 95%;
+  justify-content: center;
+  align-items: center;
+}
+
+.roomDataTitleContainer {
+  font-size: 1.25rem;
+  margin: .5rem;
+  padding-bottom: .25rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.roomDataTitle {
+  color: var(--white);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.roomDataSubTitleContainer {
+  font-size: .9rem;
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  margin: .5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.roomDataSubTitle {
+  color: var(--lighter-grey);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.roomDataMainBodyContainer {
+  width: 100%;
+  margin: .5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.roomDataMainBodySubContainer {
+  width: 85%; 
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+/**************** Telemetry CSS ****************/
+.telemetryStartButton {
+  margin-left: .75rem;
+  margin-right: .75rem;
+  height: 2rem;
+  width: 6.5rem;
+  border-radius: .25rem;
+  color: var(--white);
+  font-size: .9rem;
+  background-color: var(--light-green);
+  opacity: .75;
+  border: none;
+}
+
+.telemetryStopButton {
+  margin-left: .75rem;
+  margin-right: .75rem;
+  height: 2rem;
+  width: 6.5rem;
+  border-radius: .25rem;
+  color: var(--white);
+  font-size: .9rem;
+  background-color: var(--darker-grey);
+  opacity: .75;
+  border: none;
+}
+
+.telemetryStartButton:hover {
+  opacity: 1;
+  transition: 1s;
+}
+
+.telemetryStopButton:hover {
+  opacity: 1;
+  transition: 1s;
+}
+
+.errorSwitchNameContainer {
+  width: 60%;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.errorSwitchName {
+  color: var(--light-grey);
+  white-space: nowrap;
+  font-size: .9rem;
+}
+
+.errorSwitchSwitchContainer {
+  width: 35%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.switch {
+  width: 2.95rem;
+  height: 1.25rem;
+  margin-left: .5rem;
+  margin-right: .5rem;
+  position: relative; 
+  display: inline-block;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0rem;
+  height: 0rem;
+}
+
+.slider {
+  background-color: var(--light-grey);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transition: .3s;
+  transition: .3s;
+  position: absolute;
+  cursor: pointer;
+}
+
+.slider:before {
+  height: 1rem;
+  width: 1.25rem;
+  left: .15rem;
+  bottom: .12rem;
+  background-color: var(--white);
+  -webkit-transition: .3s;
+  transition: .3s;
+  position: absolute;
+  content: "";
+}
+
+input:checked + .slider {
+  background-color: var(--red);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 .1rem var(--red);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(1.45rem);
+  -ms-transform: translateX(1.45rem);
+  transform: translateX(1.45rem);
+}
+
+.slider.round {
+  border-radius: 1rem;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+/**************** Telemetry State CSS ****************/
+.telemetryStateNameContainer {
+  width: 65%;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.telemetryStateDataContainer {
+  width: 35%;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.telemetryStateDataTitle {
+  color: var(--white);
+  font-size: 1rem;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.telemetryStateData {
+  color: var(--white);
+  font-size: .85rem;
+  white-space: nowrap;
+}
+
+
+/**************** Stations CSS ****************/
+.stationNameContainer {
+  margin:.5rem;
+  width: 15%;
+  height: 1.5rem;
+  background-color: var(--light-grey);
+  border-radius: .25rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.stationName {
+  color: var(--lighter-grey);
+  font-size: 1rcap;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.stationBulletPoint {
+  width: .6rem;
+  height: .6rem;
+  border-radius: 5rem;
+  background-color: var(--lighter-grey);
+  margin: .25rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.stationStatusContainer {
+  width: 20%; 
+  margin: .5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.stationStatus {
+  color: var(--lighter-grey);
+  font-size: 1.15rem;
+  white-space: nowrap;
+}
+
+.stationTimerContainer {
+  width: 10%; 
+  margin: .5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  display: none;
+}
+
+.stationTimer {
+  color: var(--white);
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.stationButtonContainer {
+  width: 20%;
+  margin: .5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  display: none;
+}
+
+.stationButton {
+  padding-top: .35rem;
+  padding-bottom: .35rem;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  color: var(--white);
+  font-size: .75rem;
+  background-color: var(--dark-grey);
+  border-radius: .3rem;
+  border-color: var(--white);
+  border-width: .1rem;
+  white-space: nowrap;
+}
+
+.stationButton:hover {
+  background-color: var(--light-grey);
+  transition: 1s;
+}
+
+/**************** UIA State CSS ****************/
+.uiaStateInfoContainer {
+  width: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.uiaStateInfoTitle {
+  color: var(--white);
+  font-size: 1rem;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.uiaStateInfo {
+  color: var(--white);
+  font-size: .85rem;
+  white-space: nowrap;
+}
+
+.uiaStateSensorContainer {
+  width: 10%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.uiaStateSensor {
+  background-color: var(--light-grey);
+  border-radius: 5rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+
+/**************** DCU State CSS ****************/
+.dcuStateInfoContainer {
+  width: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.dcuStateInfoTitle {
+  color: var(--white);
+  font-size: 1rem;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.dcuStateInfo {
+  color: var(--white);
+  font-size: .85rem;
+  white-space: nowrap;
+}
+
+.dcuSubTitle {
+  color: var(--white);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dcuStateSensorContainer {
+  width: 10%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.dcuStateSensor {
+  background-color: var(--light-grey);
+  border-radius: 5rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+
+/**************** Rover CSS ****************/
+.roverFeed {
+  max-width: 20rem;
+  max-height: 20rem;
+  margin: .5rem;
+  display: block;
+  border-style: solid;
+  border-color: var(--white);
+}
+
+
+/**************** GPS CSS ****************/
+.gpsSubTitle {
+  color: var(--white);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.gpsNameContainer {
+  width: 65%;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.gpsDataContainer {
+  width: 35%;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.gpsData {
+  color: var(--white);
+  font-size: .85rem;
+  white-space: nowrap;
+}

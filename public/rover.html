@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CAPCOM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./css/masterCSS.css">
+    <link rel="stylesheet" href="./css/rover.css">
+    <link rel="icon" href="./images/android-chrome-512x512.png">
+    <script src="./javascript/rover.js" ></script>
+    <script type="text/javascript" src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/web3@0.20.5/dist/web3.min.js"></script>
+  </head>
+
+  <body onload="onload()">
+
+
+    <!------------------------------------------ Navigation Bar Section ------------------------------------------>
+    <nav>
+        <img class="logo" src="./images/android-chrome-512x512.png">
+        <span class="navBarTitle">
+            NASA S.U.I.T.S.
+        </span>
+        <span class="navBarSubTitle">
+            | CAPCOM |
+        </span>
+        <div class="navBarListContainer">
+            <ul class="navBarList">
+                <li>
+                    <a href="index.html" class="navBarListItem">Rooms</a>
+                </li>
+                <li>
+                    <a href="uia.html" class="navBarListItem">UIA</a>
+                </li>
+                <li>
+                    <a href="dcu.html" class="navBarListItem">DCU</a>
+                </li>
+                <li>
+                    <a href="rover.html" class="navBarListItem">Rover</a>
+                </li>
+                <li>
+                    <a href="spec.html" class="navBarListItem">Spec</a>
+                </li>
+                <li>
+                    <a href="telemetry.html" class="navBarListItem">Telemetry</a>
+                </li>
+                <li>
+                    <a href="commTower.html" class="navBarListItem">Comm Tower</a>
+                </li>
+            </ul>
+        </div>
+        <img class="logo" src="./images/android-chrome-512x512.png">
+    </nav>
+
+
+    <!------------------------------------------ Main Page Body Section ------------------------------------------>
+    <div class="pageBody">
+
+
+        <!------------------------------------------ Room Specific Data Section ------------------------------------------>
+        <div class="roomDataContainer">
+            <div class="roomDataColumnContainer">
+                <div class="roomDataRowContainer">
+                    <div class="roomDataColumn">
+    
+
+                        <!------------------------------------------ Telemetry Section ------------------------------------------>
+                        <div class="roomDataSubContainer">
+                            <div class="roomDataTitleContainer">
+                                <span class="roomDataTitle">
+                                    Rover Video Feed
+                                </span>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <img id="videoFeed" class="roverFeed">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!------------------------------------------ Stations Section ------------------------------------------>
+                    <div class="roomDataColumn">
+                        <div class="roomDataSubContainer">
+                            <div class="roomDataTitleContainer">
+                                <span class="roomDataTitle">
+                                    Rock Yard Map
+                                </span>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <img id="rockYardMap" class="map">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </body>
+</html>

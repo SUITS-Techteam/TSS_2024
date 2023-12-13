@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CAPCOM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./css/masterCSS.css">
+    <link rel="stylesheet" href="./css/telemetry.css">
+    <link rel="icon" href="./images/android-chrome-512x512.png">
+    <script src="./javascript/index.js" ></script>
+    <script type="text/javascript" src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/web3@0.20.5/dist/web3.min.js"></script>
+  </head>
+
+  <body onload="onload()">
+
+
+    <!------------------------------------------ Navigation Bar Section ------------------------------------------>
+    <nav>
+        <img class="logo" src="./images/android-chrome-512x512.png">
+        <span class="navBarTitle">
+            NASA S.U.I.T.S.
+        </span>
+        <span class="navBarSubTitle">
+            | CAPCOM |
+        </span>
+        <div class="navBarListContainer">
+            <ul class="navBarList">
+                <li>
+                    <a href="index.html" class="navBarListItem">Rooms</a>
+                </li>
+                <li>
+                    <a href="uia.html" class="navBarListItem">UIA</a>
+                </li>
+                <li>
+                    <a href="dcu.html" class="navBarListItem">DCU</a>
+                </li>
+                <li>
+                    <a href="rover.html" class="navBarListItem">Rover</a>
+                </li>
+                <li>
+                    <a href="spec.html" class="navBarListItem">Spec</a>
+                </li>
+                <li>
+                    <a href="telemetry.html" class="navBarListItem">Telemetry</a>
+                </li>
+                <li>
+                    <a href="commTower.html" class="navBarListItem">Comm Tower</a>
+                </li>
+            </ul>
+        </div>
+        <img class="logo" src="./images/android-chrome-512x512.png">
+    </nav>
+
+
+    <!------------------------------------------ Main Page Body Section ------------------------------------------>
+    <div class="pageBody">
+
+
+        <!------------------------------------------ List of Rooms Section ------------------------------------------>
+        <div class="roomListContainer">
+            <span class="roomListTitle">
+                Rooms
+            </span>
+            <div onclick="roomSelect(1)" id="room1" class="roomListItemBody">
+                <div class="roomListLightContainer">
+                    <div id="room1Light" class="roomListLight"></div>
+                </div>
+                <div class="roomListTeamNameContainer">
+                    <span id="room1Name" class="roomListTeamNameRoomNum">
+                        ------
+                    </span>
+                </div>
+                <div class="roomListRoomNumContainer">
+                    <span class="roomListTeamNameRoomNum">
+                        Room 1
+                    </span>
+                </div>
+            </div>
+            <div onclick="roomSelect(2)" id="room2" class="roomListItemBody">
+                <div class="roomListLightContainer">
+                    <div id="room2Light" class="roomListLight"></div>
+                </div>
+                <div class="roomListTeamNameContainer">
+                    <span id="room2Name" class="roomListTeamNameRoomNum">
+                        ------
+                    </span>
+                </div>
+                <div class="roomListRoomNumContainer">
+                    <span class="roomListTeamNameRoomNum">
+                        Room 2
+                    </span>
+                </div>
+            </div>
+            <div onclick="roomSelect(3)" id="room3" class="roomListItemBody">
+                <div class="roomListLightContainer">
+                    <div id="room3Light" class="roomListLight"></div>
+                </div>
+                <div class="roomListTeamNameContainer">
+                    <span id="room3Name" class="roomListTeamNameRoomNum">
+                        ------
+                    </span>
+                </div>
+                <div class="roomListRoomNumContainer">
+                    <span class="roomListTeamNameRoomNum">
+                        Room 3
+                    </span>
+                </div>
+            </div>
+            <div onclick="roomSelect(4)" id="room4" class="roomListItemBody">
+                <div class="roomListLightContainer">
+                    <div id="room4Light" class="roomListLight"></div>
+                </div>
+                <div class="roomListTeamNameContainer">
+                    <span id="room4Name" class="roomListTeamNameRoomNum">
+                        ------
+                    </span>
+                </div>
+                <div class="roomListRoomNumContainer">
+                    <span class="roomListTeamNameRoomNum">
+                        Room 4
+                    </span>
+                </div>
+            </div>
+            <div onclick="roomSelect(5)" id="room5" class="roomListItemBody">
+                <div class="roomListLightContainer">
+                    <div id="room5Light" class="roomListLight"></div>
+                </div>
+                <div class="roomListTeamNameContainer">
+                    <span id="room5Name" class="roomListTeamNameRoomNum">
+                        ------
+                    </span>
+                </div>
+                <div class="roomListRoomNumContainer">
+                    <span class="roomListTeamNameRoomNum">
+                        Room 5
+                    </span>
+                </div>
+            </div>
+            <div onclick="roomSelect(6)" id="room6" class="roomListItemBody">
+                <div class="roomListLightContainer">
+                    <div id="room6Light" class="roomListLight"></div>
+                </div>
+                <div class="roomListTeamNameContainer">
+                    <span id="room6Name" class="roomListTeamNameRoomNum">
+                        ------
+                    </span>
+                </div>
+                <div class="roomListRoomNumContainer">
+                    <span class="roomListTeamNameRoomNum">
+                        Room 6
+                    </span>
+                </div>
+            </div>
+            <div onclick="roomSelect(7)" id="room7" class="roomListItemBody">
+                <div class="roomListLightContainer">
+                    <div id="room7Light" class="roomListLight"></div>
+                </div>
+                <div class="roomListTeamNameContainer">
+                    <span id="room7Name" class="roomListTeamNameRoomNum">
+                        ------
+                    </span>
+                </div>
+                <div class="roomListRoomNumContainer">
+                    <span class="roomListTeamNameRoomNum">
+                        Room 7
+                    </span>
+                </div>
+            </div>
+            <div onclick="roomSelect(8)" id="room8" class="roomListItemBody">
+                <div class="roomListLightContainer">
+                    <div id="room8Light" class="roomListLight"></div>
+                </div>
+                <div class="roomListTeamNameContainer">
+                    <span id="room8Name" class="roomListTeamNameRoomNum">
+                        ------
+                    </span>
+                </div>
+                <div class="roomListRoomNumContainer">
+                    <span class="roomListTeamNameRoomNum">
+                       Room 8
+                    </span>
+                </div>
+            </div>
+            <div onclick="roomSelect(9)" id="room9" class="roomListItemBody">
+                <div class="roomListLightContainer">
+                    <div id="room9Light" class="roomListLight"></div>
+                </div>
+                <div class="roomListTeamNameContainer">
+                    <span id="room9Name" class="roomListTeamNameRoomNum">
+                        ------
+                    </span>
+                </div>
+                <div class="roomListRoomNumContainer">
+                    <span class="roomListTeamNameRoomNum">
+                        Room 9
+                    </span>
+                </div>
+            </div>
+            <div onclick="roomSelect(10)" id="room10" class="roomListItemBody">
+                <div class="roomListLightContainer">
+                    <div id="room10Light" class="roomListLight"></div>
+                </div>
+                <div class="roomListTeamNameContainer">
+                    <span id="room10Name" class="roomListTeamNameRoomNum">
+                        ------
+                    </span>
+                </div>
+                <div class="roomListRoomNumContainer">
+                    <span class="roomListTeamNameRoomNum">
+                        Room 10
+                    </span>
+                </div>
+            </div>
+            <div onclick="roomSelect(11)" id="room11" class="roomListItemBody">
+                <div class="roomListLightContainer">
+                    <div id="room11Light" class="roomListLight"></div>
+                </div>
+                <div class="roomListTeamNameContainer">
+                    <span id="room11Name" class="roomListTeamNameRoomNum">
+                        ------
+                    </span>
+                </div>
+                <div class="roomListRoomNumContainer">
+                    <span class="roomListTeamNameRoomNum">
+                        Room 11
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <!------------------------------------------ Room Specific Data Section ------------------------------------------>
+        <div class="roomDataContainer">
+            <div class="roomDataColumnContainer">
+                <div class="roomDataTitleContainer">
+                    <span id="roomDataTitle" class="roomDataTitle">
+                        
+                    </span>
+                </div>
+                <div class="roomDataRowContainer">
+                    <div class="roomDataColumn">
+    
+    
+                        <!------------------------------------------ Telemetry Section ------------------------------------------>
+                        <div class="roomDataSubContainer">
+                            <div class="roomDataTitleContainer">
+                                <span class="roomDataTitle">
+                                    Telemetry
+                                </span>
+                            </div>
+                            <div class="roomDataSubTitleContainer">
+                                <span id="evaTimer" class="roomDataSubTitle" style="display:none;">
+                                    
+                                </span>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <form action="" method="post">
+                                    <button name="eva_start_team" value="0" id="tssStart" class="telemetryStartButton">START</button>
+                                    <button name="eva_end_team" value="0" id="tssStop" class="telemetryStopButton">STOP</button>
+                                </form>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="errorSwitchNameContainer">
+                                        <span class="errorSwitchName">
+                                            O2 ERROR
+                                        </span>
+                                    </div>
+                                    <div class="errorSwitchSwitchContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva_o2_error" name="o2_error" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type="hidden" name="o2_error" value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="errorSwitchNameContainer">
+                                        <span class="errorSwitchName">
+                                            FAN ERROR
+                                        </span>
+                                    </div>
+                                    <div class="errorSwitchSwitchContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva_fan_error" name="fan_error" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type="hidden" name="fan_error" value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="errorSwitchNameContainer">
+                                        <span class="errorSwitchName">
+                                            PUMP ERROR
+                                        </span>
+                                    </div>
+                                    <div class="errorSwitchSwitchContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva_pump_error" name="pump_error" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type="hidden" name="pump_error" value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="errorSwitchNameContainer">
+                                        <span class="errorSwitchName">
+                                            POWER ERROR
+                                        </span>
+                                    </div>
+                                    <div class="errorSwitchSwitchContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva_power_error" name="power_error" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type="hidden" name="power_error" value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!------------------------------------------ Stations Section ------------------------------------------>
+                        <div class="roomDataSubContainer">
+                            <div class="roomDataTitleContainer">
+                                <span class="roomDataTitle">
+                                    Stations
+                                </span>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div id="uiaName" class="stationNameContainer">
+                                        <span id="uiaNameFont" class="stationName">
+                                            UIA
+                                        </span>
+                                    </div>
+                                    <div id="uiaBulletPoint" class="stationBulletPoint">   
+                                    </div>
+                                    <div class="stationStatusContainer">
+                                        <span id="uiaStatus" class="stationStatus">
+                                            Incomplete
+                                        </span>
+                                    </div>
+                                    <div id="uiaTimerContainer" class="stationTimerContainer">
+                                        <span id="uiaTimer" class="stationTimer">
+                                            00:00
+                                        </span>
+                                    </div>
+                                    <div class="stationButtonContainer">
+                                        <form action="" method="post">
+                                            <button name="eva_start_UIA_team" value="0" id="assignUIA" class="stationButton">ASSIGN</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div id="specName" class="stationNameContainer">
+                                        <span id="specNameFont" class="stationName">
+                                            SPEC
+                                        </span>
+                                    </div>
+                                    <div id="specBulletPoint" class="stationBulletPoint">     
+                                    </div>
+                                    <div class="stationStatusContainer">
+                                        <span id="specStatus" class="stationStatus">
+                                            Incomplete
+                                        </span>
+                                    </div>
+                                    <div id="specTimerContainer" class="stationTimerContainer">
+                                        <span id="specTimer" class="stationTimer">
+                                            00:00
+                                        </span>
+                                    </div>
+                                    <div class="stationButtonContainer">
+                                        <form action="" method="post">
+                                            <button name="eva_start_SPEC_team" value="0" id="assignSPEC" class="stationButton">ASSIGN</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div id="rovName" class="stationNameContainer">
+                                        <span id="rovNameFont" class="stationName">
+                                            ROVER
+                                        </span>
+                                    </div>
+                                    <div id="rovBulletPoint" class="stationBulletPoint">       
+                                    </div>
+                                    <div class="stationStatusContainer">
+                                        <span id="rovStatus"class="stationStatus">
+                                            Incomplete
+                                        </span>
+                                    </div>
+                                    <div id="rovTimerContainer" class="stationTimerContainer">
+                                        <span id="rovTimer" class="stationTimer">
+                                            00:00
+                                        </span>
+                                    </div>
+                                    <div class="stationButtonContainer">
+                                        <form action="" method="post">
+                                            <button name="eva_start_ROVER_team" value="0" id="assignROV" class="stationButton">ASSIGN</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div id="dcuName" class="stationNameContainer">
+                                        <span id="dcuNameFont" class="stationName">
+                                            DCU
+                                        </span>
+                                    </div>
+                                    <div id="dcuBulletPoint" class="stationBulletPoint">       
+                                    </div>
+                                    <div class="stationStatusContainer">
+                                        <span id="dcuStatus" class="stationStatus">
+                                            Incomplete
+                                        </span>
+                                    </div>
+                                    <div id="dcuTimerContainer" class="stationTimerContainer">
+                                        <span id="dcuTimer" class="stationTimer">
+                                            00:00
+                                        </span>
+                                    </div>
+                                    <div class="stationButtonContainer">
+                                        <form action="" method="post">
+                                            <button name="eva_start_DCU_team" value="0" id="assignDCU" class="stationButton">ASSIGN</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="roomDataColumn">
+
+
+                        <!------------------------------------------ EVA 2 Section ------------------------------------------>
+                        <div class="roomDataSubContainer">
+                            <div class="roomDataTitleContainer">
+                                <span class="roomDataTitle">
+                                    Telemetry State
+                                </span>
+                            </div>
+
+
+                            <!-------------------------------------- Telemetry State Section -------------------------------------->
+                            <div class="roomDataSubTitleContainer">
+                                <span class="roomDataSubTitle">
+                                    EVA 1
+                                </span>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateDataTitle">
+                                            Telemetry
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span class="telemetryStateDataTitle">
+                                            Value
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateDataTitle">
+                                            Telemetry
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span class="telemetryStateDataTitle">
+                                            Value
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            EVA Time
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="evaTimeTelemetryState1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            O2 Time Left
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="o2Time1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Primary O2 Storage
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="primaryO2Storage1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Secondary O2 Storage
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="secondaryO2Storage1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Primary O2 Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="primaryO2Pressure1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Secondary O2 Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="secondaryO2Pressure1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Suit O2 Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="suitO2Pressure1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Suit CO2 Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="suitCO2Pressure1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Suit Other Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="suitOtherPressure1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Suit Total Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="suitTotalPressure1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Scrubber A Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="scrubberAPressure1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Scrubber B Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="scrubberBPressure1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            H20 Gas Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="h2OGasPressure1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            H2O Liquid Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="h2OLiquidPressure1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            O2 Consumption
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="o2Consumption1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            CO2 Production
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="co2Production1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Primary Fan
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="primaryFan1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Secondary Fan
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="secondaryFan1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Helmet CO2 Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="helmetCO2Pressure1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Heart Rate
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="heartRate1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Temperature
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="temperature1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Coolant
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="coolant1" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!------------------------------------------ GPS Section ------------------------------------------>
+                            <div class="roomDataSubTitleContainer">
+                                <span class="gpsSubTitle">
+                                    GPS
+                                </span>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="gpsNameContainer">
+                                        <span class="gpsData">
+                                            X-Coordinate
+                                        </span>
+                                    </div>
+                                    <div class="gpsDataContainer">
+                                        <span id="xCoordinateEV1" class="gpsData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="gpsNameContainer">
+                                        <span class="gpsData">
+                                            Y-Coordinate
+                                        </span>
+                                    </div>
+                                    <div class="gpsDataContainer">
+                                        <span id="yCoordinateEV1" class="gpsData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="gpsNameContainer">
+                                        <span class="gpsData">
+                                            Heading
+                                        </span>
+                                    </div>
+                                    <div class="gpsDataContainer">
+                                        <span id="headingEV1" class="gpsData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="gpsNameContainer">
+                                        <span class="gpsData">
+                                            
+                                        </span>
+                                    </div>
+                                    <div class="gpsDataContainer">
+                                        <span class="gpsData">
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-------------------------------------- EVA 2 Section -------------------------------------->
+                            <div class="roomDataSubTitleContainer">
+                                <span class="roomDataSubTitle">
+                                    EVA 2
+                                </span>
+                            </div>
+
+
+                            <!-------------------------------------- Telemetry State Section -------------------------------------->
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateDataTitle">
+                                            Telemetry
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span class="telemetryStateDataTitle">
+                                            Value
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateDataTitle">
+                                            Telemetry
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span class="telemetryStateDataTitle">
+                                            Value
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            EVA Time
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="evaTimeTelemetryState2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            O2 Time Left
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="o2Time2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Primary O2 Storage
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="primaryO2Storage2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Secondary O2 Storage
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="secondaryO2Storage2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Primary O2 Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="primaryO2Pressure2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Secondary O2 Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="secondaryO2Pressure2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Suit O2 Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="suitO2Pressure2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Suit CO2 Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="suitCO2Pressure2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Suit Other Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="suitOtherPressure2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Suit Total Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="suitTotalPressure2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Scrubber A Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="scrubberAPressure2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Scrubber B Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="scrubberBPressure2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            H20 Gas Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="h2OGasPressure2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            H2O Liquid Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="h2OLiquidPressure2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            O2 Consumption
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="o2Consumption2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            CO2 Production
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="co2Production2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Primary Fan
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="primaryFan2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Secondary Fan
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="secondaryFan2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Helmet CO2 Pressure
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="helmetCO2Pressure2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Heart Rate
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="heartRate2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Temperature
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="temperature2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateNameContainer">
+                                        <span class="telemetryStateData">
+                                            Coolant
+                                        </span>
+                                    </div>
+                                    <div class="telemetryStateDataContainer">
+                                        <span id="coolant2" class="telemetryStateData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!------------------------------------------ GPS Section ------------------------------------------>
+                            <div class="roomDataSubTitleContainer">
+                                <span class="gpsSubTitle">
+                                    GPS
+                                </span>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="gpsNameContainer">
+                                        <span class="gpsData">
+                                            X-Coordinate
+                                        </span>
+                                    </div>
+                                    <div class="gpsDataContainer">
+                                        <span id="xCoordinateEV2" class="gpsData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="gpsNameContainer">
+                                        <span class="gpsData">
+                                            Y-Coordinate
+                                        </span>
+                                    </div>
+                                    <div class="gpsDataContainer">
+                                        <span id="yCoordinateEV2" class="gpsData">
+                                            ------
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="gpsNameContainer">
+                                        <span class="gpsData">
+                                            Heading
+                                        </span>
+                                    </div>
+                                    <div class="gpsDataContainer">
+                                        <span id="headingEV2" class="gpsData">
+                                            ------
+                                        </span>
+                                    </div>
+                                    <div class="gpsNameContainer">
+                                        <span class="gpsData">
+                                            
+                                        </span>
+                                    </div>
+                                    <div class="gpsDataContainer">
+                                        <span class="gpsData">
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CAPCOM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./css/masterCSS.css">
+    <link rel="stylesheet" href="./css/commTower.css">
+    <link rel="icon" href="./images/android-chrome-512x512.png">
+    <script src="./javascript/commTower.js" ></script>
+    <script type="text/javascript" src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/web3@0.20.5/dist/web3.min.js"></script>
+  </head>
+
+  <body onload="onload()">
+
+
+    <!------------------------------------------ Navigation Bar Section ------------------------------------------>
+    <nav>
+        <img class="logo" src="./images/android-chrome-512x512.png">
+        <span class="navBarTitle">
+            NASA S.U.I.T.S.
+        </span>
+        <span class="navBarSubTitle">
+            | CAPCOM |
+        </span>
+        <div class="navBarListContainer">
+            <ul class="navBarList">
+                <li>
+                    <a href="index.html" class="navBarListItem">Rooms</a>
+                </li>
+                <li>
+                    <a href="uia.html" class="navBarListItem">UIA</a>
+                </li>
+                <li>
+                    <a href="rover.html" class="navBarListItem">Rover</a>
+                </li>
+                <li>
+                    <a href="spec.html" class="navBarListItem">Spec</a>
+                </li>
+                <li>
+                    <a href="telemetry.html" class="navBarListItem">Telemetry</a>
+                </li>
+                <li>
+                    <a href="commTower.html" class="navBarListItem">Comm Tower</a>
+                </li>
+            </ul>
+        </div>
+        <img class="logo" src="./images/android-chrome-512x512.png">
+    </nav>
+
+
+    <!------------------------------------------ Main Page Body Section ------------------------------------------>
+    <div class="pageBody">
+
+
+        <!------------------------------------------ Room Specific Data Section ------------------------------------------>
+        <div class="roomDataContainer">
+            <div class="roomDataColumnContainer">
+                <div class="roomDataRowContainer">
+                    <div class="roomDataColumn">
+        
+
+                        <!------------------------------------------ Comm State Section ------------------------------------------>
+                        <div class="roomDataSubContainer">
+                            <div class="roomDataTitleContainer">
+                                <span class="roomDataTitle">
+                                 Communications State
+                                </span>
+                            </div>
+                            <div class="roomDataSubTitleContainer">
+                                <span class="roomDataSubTitle">
+                                    Not Connected
+                                </span>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="commStateInfoContainer">
+                                        <span class="commStateInfoTitle">
+                                            Status Sensor
+                                        </span>
+                                    </div>
+                                    <div class="commStateInfoContainer">
+                                        <span class="commStateInfoTitle">
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="commStateSensorContainer">
+                                        <div id="commSensor" class="commStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="commStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="comm_switch" name="comm_tower" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='comm_tower' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="commStateInfoContainer">
+                                        <span class="commStateInfo">
+                                            COMM Tower
+                                        </span>
+                                    </div>
+                                    <div class="commStateSensorContainer">
+                                        
+                                    </div>
+                                    <div class="commStateSensorContainer">
+                                        
+                                    </div>
+                                    <div class="commStateInfoContainer">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </body>
+</html>

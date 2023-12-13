@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CAPCOM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./css/masterCSS.css">
+    <link rel="stylesheet" href="./css/uia.css">
+    <link rel="icon" href="./images/android-chrome-512x512.png">
+    <script src="./javascript/uia.js" ></script>
+    <script type="text/javascript" src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/web3@0.20.5/dist/web3.min.js"></script>
+  </head>
+
+  <body onload="onload()">
+
+
+    <!------------------------------------------ Navigation Bar Section ------------------------------------------>
+    <nav>
+        <img class="logo" src="./images/android-chrome-512x512.png">
+        <span class="navBarTitle">
+            NASA S.U.I.T.S.
+        </span>
+        <span class="navBarSubTitle">
+            | CAPCOM |
+        </span>
+        <div class="navBarListContainer">
+            <ul class="navBarList">
+                <li>
+                    <a href="index.html" class="navBarListItem">Rooms</a>
+                </li>
+                <li>
+                    <a href="uia.html" class="navBarListItem">UIA</a>
+                </li>
+                <li>
+                    <a href="dcu.html" class="navBarListItem">DCU</a>
+                </li>
+                <li>
+                    <a href="rover.html" class="navBarListItem">Rover</a>
+                </li>
+                <li>
+                    <a href="spec.html" class="navBarListItem">Spec</a>
+                </li>
+                <li>
+                    <a href="telemetry.html" class="navBarListItem">Telemetry</a>
+                </li>
+                <li>
+                    <a href="commTower.html" class="navBarListItem">Comm Tower</a>
+                </li>
+            </ul>
+        </div>
+        <img class="logo" src="./images/android-chrome-512x512.png">
+    </nav>
+
+
+    <!------------------------------------------ Main Page Body Section ------------------------------------------>
+    <div class="pageBody">
+
+
+        <!------------------------------------------ Room Specific Data Section ------------------------------------------>
+        <div class="roomDataContainer">
+            <div class="roomDataColumnContainer">
+                <div class="roomDataRowContainer">
+        
+
+                    <!------------------------------------------ Stations Section ------------------------------------------>
+                    <div class="roomDataColumn">        
+        
+
+                        <!------------------------------------------ UIA State Section ------------------------------------------>
+                        <div class="roomDataSubContainer">
+                            <div class="roomDataTitleContainer">
+                                <span class="roomDataTitle">
+                                    UIA State
+                                </span>
+                            </div>
+                            <div class="roomDataSubTitleContainer">
+                                <span class="roomDataSubTitle">
+                                    Not Connected
+                                </span>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="uiaStateInfoContainer">
+                                        <span class="uiaStateInfoTitle">
+                                            Status Sensor
+                                        </span>
+                                    </div>
+                                    <div class="uiaStateInfoContainer">
+                                        <span class="uiaStateInfoTitle">
+                                            Status Sensor
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="uiaStateSensorContainer">
+                                        <div id="eva1PowerSensor" class="uiaStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="uiaStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="uia_eva1_power_switch" name="uia_eva1_power" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='uia_eva1_power' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="uiaStateInfoContainer">
+                                        <span class="uiaStateInfo">
+                                            EMU1 POWER
+                                        </span>
+                                    </div>
+                                    <div class="uiaStateSensorContainer">
+                                        <div id="eva2PowerSensor" class="uiaStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="uiaStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="uia_eva2_power_switch" name="uia_eva2_power" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='uia_eva2_power' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="uiaStateInfoContainer">
+                                        <span class="uiaStateInfo">
+                                            EMU2 POWER
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="uiaStateSensorContainer">
+                                        <div id="eva1WaterSupplySensor" class="uiaStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="uiaStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="uia_eva1_water_supply_switch" name="uia_eva1_water_supply" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='uia_eva1_water_supply' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="uiaStateInfoContainer">
+                                        <span class="uiaStateInfo">
+                                            EV1 SUPPLY
+                                        </span>
+                                    </div>
+                                    <div class="uiaStateSensorContainer">
+                                        <div id="eva2WaterSupplySensor" class="uiaStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="uiaStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="uia_eva2_water_supply_switch" name="uia_eva2_water_supply" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='uia_eva2_water_supply' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="uiaStateInfoContainer">
+                                        <span class="uiaStateInfo">
+                                            EV2 SUPPLY
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="uiaStateSensorContainer">
+                                        <div id="eva1WaterWasteSensor" class="uiaStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="uiaStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="uia_eva1_water_waste_switch" name="uia_eva1_water_waste" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='uia_eva1_water_waste' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="uiaStateInfoContainer">
+                                        <span class="uiaStateInfo">
+                                            EV1 WASTE
+                                        </span>
+                                    </div>
+                                    <div class="uiaStateSensorContainer">
+                                        <div id="eva2WaterWasteSensor" class="uiaStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="uiaStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="uia_eva2_water_waste_switch" name="uia_eva2_water_waste" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='uia_eva2_water_waste' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="uiaStateInfoContainer">
+                                        <span class="uiaStateInfo">
+                                            EV2 WASTE
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="uiaStateSensorContainer">
+                                        <div id="eva1OxygenSensor" class="uiaStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="uiaStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="uia_eva1_oxy_switch" name="uia_eva1_oxy" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='uia_eva1_oxy' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="uiaStateInfoContainer">
+                                        <span class="uiaStateInfo">
+                                            EV1 OXYGEN
+                                        </span>
+                                    </div>
+                                    <div class="uiaStateSensorContainer">
+                                        <div id="eva2OxygenSensor" class="uiaStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="uiaStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="uia_eva2_oxy_switch" name="uia_eva2_oxy" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='uia_eva2_oxy' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="uiaStateInfoContainer">
+                                        <span class="uiaStateInfo">
+                                            EV2 OXYGEN
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="uiaStateSensorContainer">
+                                        <div id="oxygenVentSensor" class="uiaStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="uiaStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="uia_oxy_vent_switch" name="uia_oxy_vent" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='uia_oxy_vent' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="uiaStateInfoContainer">
+                                        <span class="uiaStateInfo">
+                                            O2 Vent
+                                        </span>
+                                    </div>
+                                    <div class="uiaStateSensorContainer">
+                                        <div id="depressPumpSensor" class="uiaStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="uiaStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="uia_depress_switch" name="uia_depress" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='uia_depress' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="uiaStateInfoContainer">
+                                        <span class="uiaStateInfo">
+                                            DEPRESS PUMP
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </body>
+</html>

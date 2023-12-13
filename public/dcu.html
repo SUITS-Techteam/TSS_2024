@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CAPCOM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./css/masterCSS.css">
+    <link rel="stylesheet" href="./css/dcu.css">
+    <link rel="icon" href="./images/android-chrome-512x512.png">
+    <script src="./javascript/dcu.js" ></script>
+    <script type="text/javascript" src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/web3@0.20.5/dist/web3.min.js"></script>
+  </head>
+
+  <body onload="onload()">
+
+
+    <!------------------------------------------ Navigation Bar Section ------------------------------------------>
+    <nav>
+        <img class="logo" src="./images/android-chrome-512x512.png">
+        <span class="navBarTitle">
+            NASA S.U.I.T.S.
+        </span>
+        <span class="navBarSubTitle">
+            | CAPCOM |
+        </span>
+        <div class="navBarListContainer">
+            <ul class="navBarList">
+                <li>
+                    <a href="index.html" class="navBarListItem">Rooms</a>
+                </li>
+                <li>
+                    <a href="uia.html" class="navBarListItem">UIA</a>
+                </li>
+                <li>
+                    <a href="dcu.html" class="navBarListItem">DCU</a>
+                </li>
+                <li>
+                    <a href="rover.html" class="navBarListItem">Rover</a>
+                </li>
+                <li>
+                    <a href="spec.html" class="navBarListItem">Spec</a>
+                </li>
+                <li>
+                    <a href="telemetry.html" class="navBarListItem">Telemetry</a>
+                </li>
+                <li>
+                    <a href="commTower.html" class="navBarListItem">Comm Tower</a>
+                </li>
+            </ul>
+        </div>
+        <img class="logo" src="./images/android-chrome-512x512.png">
+    </nav>
+
+
+    <!------------------------------------------ Main Page Body Section ------------------------------------------>
+    <div class="pageBody">
+
+
+        <!------------------------------------------ Room Specific Data Section ------------------------------------------>
+        <div class="roomDataContainer">
+            <div class="roomDataColumnContainer">
+                <div class="roomDataRowContainer">
+                    <div class="roomDataColumn">
+        
+
+                        <!------------------------------------------ DCU State Section ------------------------------------------>
+                        <div class="roomDataSubContainer">
+                            <div class="roomDataTitleContainer">
+                                <span class="roomDataTitle">
+                                    DCU State
+                                </span>
+                            </div>
+                            <div class="roomDataSubTitleContainer">
+                                <span class="roomDataSubTitle">
+                                    Not Connected
+                                </span>
+                            </div>
+
+
+                            <!-------------------------------------- EVA 1 Section -------------------------------------->
+                            <div class="roomDataSubTitleContainer">
+                                <span class="dcuSubTitle">
+                                    EVA 1
+                                </span>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfoTitle">
+                                            Status Sensor
+                                        </span>
+                                    </div>
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfoTitle">
+                                            Status Sensor
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="dcuStateSensorContainer">
+                                        <div id="eva1BatterySensor" class="dcuStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva1_dcu_batt_switch" name="dcu_eva1_batt" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='dcu_eva1_batt' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfo">
+                                            BATTERY
+                                        </span>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <div id="eva1FanSensor" class="dcuStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva1_dcu_fan_switch" name="dcu_eva1_fan" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='dcu_eva1_fan' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfo">
+                                            FAN
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="dcuStateSensorContainer">
+                                        <div id="eva1OxygenSensor" class="dcuStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva1_dcu_oxy_switch" name="dcu_eva1_oxy" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='dcu_eva1_oxy' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfo">
+                                            OXYGEN
+                                        </span>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <div id="eva1PumpSensor" class="dcuStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva1_dcu_pump_switch" name="dcu_eva1_pump" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='dcu_eva1_pump' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfo">
+                                            PUMP
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="dcuStateSensorContainer">
+                                        <div id="eva1CommSensor" class="dcuStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva1_dcu_comm_switch" name="dcu_eva1_comm" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='dcu_eva1_comm' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfo">
+                                            COMMS
+                                        </span>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <div id="eva1Co2Sensor" class="dcuStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva1_dcu_co2_switch" name="dcu_eva1_co2" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='dcu_eva1_co2' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfo">
+                                            CO2
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-------------------------------------- EVA 2 Section -------------------------------------->
+                            <div class="roomDataSubTitleContainer">
+                                <span class="dcuSubTitle">
+                                    EVA 2
+                                </span>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfoTitle">
+                                            Status Sensor
+                                        </span>
+                                    </div>
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfoTitle">
+                                            Status Sensor
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="dcuStateSensorContainer">
+                                        <div id="eva2BatterySensor" class="dcuStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva2_dcu_batt_switch" name="dcu_eva2_batt" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='dcu_eva2_batt' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfo">
+                                            BATTERY
+                                        </span>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <div id="eva2FanSensor" class="dcuStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva2_dcu_fan_switch" name="dcu_eva2_fan" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='dcu_eva2_fan' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfo">
+                                            FAN
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="dcuStateSensorContainer">
+                                        <div id="eva2OxygenSensor" class="dcuStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva2_dcu_oxy_switch" name="dcu_eva2_oxy" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='dcu_eva2_oxy' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfo">
+                                            OXYGEN
+                                        </span>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <div id="eva2PumpSensor" class="dcuStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva2_dcu_pump_switch" name="dcu_eva2_pump" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='dcu_eva2_pump' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfo">
+                                            PUMP
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roomDataMainBodyContainer">
+                                <div class="roomDataMainBodySubContainer">
+                                    <div class="dcuStateSensorContainer">
+                                        <div id="eva2CommSensor" class="dcuStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva2_dcu_comm_switch" name="dcu_eva2_comm" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='dcu_eva2_comm' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfo">
+                                            COMMS
+                                        </span>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <div id="eva2Co2Sensor" class="dcuStateSensor">
+                                        </div>
+                                    </div>
+                                    <div class="dcuStateSensorContainer">
+                                        <form action="" method="post">
+                                            <label class="switch">
+                                                <input type="checkbox" id="eva2_dcu_co2_switch" name="dcu_eva2_co2" value="true" onChange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                                <input type='hidden' name='dcu_eva2_co2' value="false">
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div class="dcuStateInfoContainer">
+                                        <span class="dcuStateInfo">
+                                            CO2
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </body>
+</html>
