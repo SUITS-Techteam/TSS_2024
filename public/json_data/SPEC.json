@@ -1,0 +1,39 @@
+
+{
+	"spec": {
+		"eva1": 
+		{
+            "name": "default_rock",
+            "id" : 0,
+            "data": {
+                "SiO2": 1,
+                "TiO2": 1,
+                "Al2O3": 1,
+                "FeO": 1,
+                "MnO": 1,
+                "MgO": 1,
+                "CaO": 1,
+                "K2O": 1,
+                "P2O3": 1,
+                "other" : 91 
+            }
+        },
+		"eva2": 
+		{
+            "name": "default_rock",
+            "id" : 0,
+            "data": {
+                "SiO2": 1,
+                "TiO2": 1,
+                "Al2O3": 1,
+                "FeO": 1,
+                "MnO": 1,
+                "MgO": 1,
+                "CaO": 1,
+                "K2O": 1,
+                "P2O3": 1,
+                "other" : 91 
+            }
+        }
+	}
+}

@@ -1,0 +1,21 @@
+
+{
+	"dcu": {
+		"eva1": {
+			"batt": true,
+			"oxy": true,
+			"comm": true,
+			"fan": true,
+			"pump": true,
+			"co2": true
+		},
+		"eva2": {
+			"batt": true,
+			"oxy": true,
+			"comm": true,
+			"fan": true,
+			"pump": true,
+			"co2": true
+		}
+	}
+}

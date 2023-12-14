@@ -1,0 +1,29 @@
+
+{
+	"eva": {
+		"started": true,
+		"paused": false,
+		"completed": true,
+		"total_time": 4,
+		"uia": {
+			"started": true,
+			"completed": false,
+			"time": 2
+		},
+		"dcu": {
+			"started": false,
+			"completed": false,
+			"time": 0
+		},
+		"rover": {
+			"started": false,
+			"completed": false,
+			"time": 0
+		},
+		"spec": {
+			"started": false,
+			"completed": false,
+			"time": 0
+		}
+	}
+}
