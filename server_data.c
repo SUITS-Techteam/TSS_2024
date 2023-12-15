@@ -909,7 +909,7 @@ bool build_json_telemetry(struct eva_data_t* eva, int team_index, bool completed
     "\n\t}"
     "\n}";
 
-    char out_buffer[512];
+    char out_buffer[2048];
     sprintf(out_buffer, format_buffer, 
         eva->total_time,
 
@@ -960,8 +960,8 @@ bool build_json_telemetry(struct eva_data_t* eva, int team_index, bool completed
         eva->eva2.coolant_liquid_pressure
     );
 
-    char filenameTemplate[48] = "public/json_data/teams/%d/%sTELEMETRY.json";
-    char out_filename[48];
+    char filenameTemplate[64] = "public/json_data/teams/%d/%sTELEMETRY.json";
+    char out_filename[64];
     sprintf(out_filename, filenameTemplate, 
         team_index,
         completed ? "Completed_" : "");
