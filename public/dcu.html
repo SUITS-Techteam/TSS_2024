@@ -100,11 +100,14 @@
                             </div>
                             <div class="roomDataMainBodyContainer">
                                 <div class="roomDataMainBodySubContainer">
-                                    <div class="dcuStateSensorContainer">
+                                    <div class="dcuStateSensorContainer dcuStatus">
                                         <div id="eva1BatterySensor" class="dcuStateSensor">
                                         </div>
                                     </div>
                                     <div class="dcuStateSensorContainer">
+                                        <span class="dcuStateInfo dcuStateInfoLeft">
+                                            LOCAL
+                                        </span>
                                         <form action="" method="post">
                                             <label class="switch">
                                                 <input type="checkbox" id="eva1_dcu_batt_switch" name="dcu_eva1_batt" value="true" onChange="this.form.submit()">
@@ -112,17 +115,23 @@
                                                 <input type='hidden' name='dcu_eva1_batt' value="false">
                                             </label>
                                         </form>
+                                        <span class="dcuStateInfo">
+                                            UMB
+                                        </span>
                                     </div>
                                     <div class="dcuStateInfoContainer">
                                         <span class="dcuStateInfo">
                                             BATTERY
                                         </span>
                                     </div>
-                                    <div class="dcuStateSensorContainer">
+                                    <div class="dcuStateSensorContainer dcuStatus">
                                         <div id="eva1FanSensor" class="dcuStateSensor">
                                         </div>
                                     </div>
                                     <div class="dcuStateSensorContainer">
+                                        <span class="dcuStateInfo dcuStateInfoLeft">
+                                            SEC
+                                        </span>
                                         <form action="" method="post">
                                             <label class="switch">
                                                 <input type="checkbox" id="eva1_dcu_fan_switch" name="dcu_eva1_fan" value="true" onChange="this.form.submit()">
@@ -130,6 +139,9 @@
                                                 <input type='hidden' name='dcu_eva1_fan' value="false">
                                             </label>
                                         </form>
+                                        <span class="dcuStateInfo">
+                                            PRI
+                                        </span>
                                     </div>
                                     <div class="dcuStateInfoContainer">
                                         <span class="dcuStateInfo">
@@ -140,11 +152,14 @@
                             </div>
                             <div class="roomDataMainBodyContainer">
                                 <div class="roomDataMainBodySubContainer">
-                                    <div class="dcuStateSensorContainer">
+                                    <div class="dcuStateSensorContainer dcuStatus">
                                         <div id="eva1OxygenSensor" class="dcuStateSensor">
                                         </div>
                                     </div>
                                     <div class="dcuStateSensorContainer">
+                                        <span class="dcuStateInfo dcuStateInfoLeft">
+                                            SEC
+                                        </span>
                                         <form action="" method="post">
                                             <label class="switch">
                                                 <input type="checkbox" id="eva1_dcu_oxy_switch" name="dcu_eva1_oxy" value="true" onChange="this.form.submit()">
@@ -152,17 +167,23 @@
                                                 <input type='hidden' name='dcu_eva1_oxy' value="false">
                                             </label>
                                         </form>
+                                        <span class="dcuStateInfo">
+                                            PRI
+                                        </span>
                                     </div>
                                     <div class="dcuStateInfoContainer">
                                         <span class="dcuStateInfo">
                                             OXYGEN
                                         </span>
                                     </div>
-                                    <div class="dcuStateSensorContainer">
+                                    <div class="dcuStateSensorContainer dcuStatus">
                                         <div id="eva1PumpSensor" class="dcuStateSensor">
                                         </div>
                                     </div>
                                     <div class="dcuStateSensorContainer">
+                                        <span class="dcuStateInfo dcuStateInfoLeft">
+                                            CLOSE
+                                        </span>
                                         <form action="" method="post">
                                             <label class="switch">
                                                 <input type="checkbox" id="eva1_dcu_pump_switch" name="dcu_eva1_pump" value="true" onChange="this.form.submit()">
@@ -170,6 +191,9 @@
                                                 <input type='hidden' name='dcu_eva1_pump' value="false">
                                             </label>
                                         </form>
+                                        <span class="dcuStateInfo">
+                                            OPEN
+                                        </span>
                                     </div>
                                     <div class="dcuStateInfoContainer">
                                         <span class="dcuStateInfo">
@@ -180,11 +204,14 @@
                             </div>
                             <div class="roomDataMainBodyContainer">
                                 <div class="roomDataMainBodySubContainer">
-                                    <div class="dcuStateSensorContainer">
+                                    <div class="dcuStateSensorContainer dcuStatus">
                                         <div id="eva1CommSensor" class="dcuStateSensor">
                                         </div>
                                     </div>
                                     <div class="dcuStateSensorContainer">
+                                        <span class="dcuStateInfo dcuStateInfoLeft">
+                                            B
+                                        </span>
                                         <form action="" method="post">
                                             <label class="switch">
                                                 <input type="checkbox" id="eva1_dcu_comm_switch" name="dcu_eva1_comm" value="true" onChange="this.form.submit()">
@@ -192,17 +219,23 @@
                                                 <input type='hidden' name='dcu_eva1_comm' value="false">
                                             </label>
                                         </form>
+                                        <span class="dcuStateInfo">
+                                            A
+                                        </span>
                                     </div>
                                     <div class="dcuStateInfoContainer">
                                         <span class="dcuStateInfo">
                                             COMMS
                                         </span>
                                     </div>
-                                    <div class="dcuStateSensorContainer">
+                                    <div class="dcuStateSensorContainer dcuStatus">
                                         <div id="eva1Co2Sensor" class="dcuStateSensor">
                                         </div>
                                     </div>
                                     <div class="dcuStateSensorContainer">
+                                        <span class="dcuStateInfo dcuStateInfoLeft">
+                                            B
+                                        </span>
                                         <form action="" method="post">
                                             <label class="switch">
                                                 <input type="checkbox" id="eva1_dcu_co2_switch" name="dcu_eva1_co2" value="true" onChange="this.form.submit()">
@@ -210,6 +243,9 @@
                                                 <input type='hidden' name='dcu_eva1_co2' value="false">
                                             </label>
                                         </form>
+                                        <span class="dcuStateInfo">
+                                            A
+                                        </span>
                                     </div>
                                     <div class="dcuStateInfoContainer">
                                         <span class="dcuStateInfo">
@@ -242,11 +278,14 @@
                             </div>
                             <div class="roomDataMainBodyContainer">
                                 <div class="roomDataMainBodySubContainer">
-                                    <div class="dcuStateSensorContainer">
+                                    <div class="dcuStateSensorContainer dcuStatus">
                                         <div id="eva2BatterySensor" class="dcuStateSensor">
                                         </div>
                                     </div>
                                     <div class="dcuStateSensorContainer">
+                                        <span class="dcuStateInfo dcuStateInfoLeft">
+                                            LOCAL
+                                        </span>
                                         <form action="" method="post">
                                             <label class="switch">
                                                 <input type="checkbox" id="eva2_dcu_batt_switch" name="dcu_eva2_batt" value="true" onChange="this.form.submit()">
@@ -254,17 +293,23 @@
                                                 <input type='hidden' name='dcu_eva2_batt' value="false">
                                             </label>
                                         </form>
+                                        <span class="dcuStateInfo">
+                                            UMB
+                                        </span>
                                     </div>
                                     <div class="dcuStateInfoContainer">
                                         <span class="dcuStateInfo">
                                             BATTERY
                                         </span>
                                     </div>
-                                    <div class="dcuStateSensorContainer">
+                                    <div class="dcuStateSensorContainer dcuStatus">
                                         <div id="eva2FanSensor" class="dcuStateSensor">
                                         </div>
                                     </div>
                                     <div class="dcuStateSensorContainer">
+                                        <span class="dcuStateInfo dcuStateInfoLeft">
+                                            SEC
+                                        </span>
                                         <form action="" method="post">
                                             <label class="switch">
                                                 <input type="checkbox" id="eva2_dcu_fan_switch" name="dcu_eva2_fan" value="true" onChange="this.form.submit()">
@@ -272,6 +317,9 @@
                                                 <input type='hidden' name='dcu_eva2_fan' value="false">
                                             </label>
                                         </form>
+                                        <span class="dcuStateInfo">
+                                            PRI
+                                        </span>
                                     </div>
                                     <div class="dcuStateInfoContainer">
                                         <span class="dcuStateInfo">
@@ -282,11 +330,14 @@
                             </div>
                             <div class="roomDataMainBodyContainer">
                                 <div class="roomDataMainBodySubContainer">
-                                    <div class="dcuStateSensorContainer">
+                                    <div class="dcuStateSensorContainer dcuStatus">
                                         <div id="eva2OxygenSensor" class="dcuStateSensor">
                                         </div>
                                     </div>
                                     <div class="dcuStateSensorContainer">
+                                        <span class="dcuStateInfo dcuStateInfoLeft">
+                                            SEC
+                                        </span>
                                         <form action="" method="post">
                                             <label class="switch">
                                                 <input type="checkbox" id="eva2_dcu_oxy_switch" name="dcu_eva2_oxy" value="true" onChange="this.form.submit()">
@@ -294,17 +345,23 @@
                                                 <input type='hidden' name='dcu_eva2_oxy' value="false">
                                             </label>
                                         </form>
+                                        <span class="dcuStateInfo">
+                                            PRI
+                                        </span>
                                     </div>
                                     <div class="dcuStateInfoContainer">
                                         <span class="dcuStateInfo">
                                             OXYGEN
                                         </span>
                                     </div>
-                                    <div class="dcuStateSensorContainer">
+                                    <div class="dcuStateSensorContainer dcuStatus">
                                         <div id="eva2PumpSensor" class="dcuStateSensor">
                                         </div>
                                     </div>
                                     <div class="dcuStateSensorContainer">
+                                        <span class="dcuStateInfo dcuStateInfoLeft">
+                                            CLOSE
+                                        </span>
                                         <form action="" method="post">
                                             <label class="switch">
                                                 <input type="checkbox" id="eva2_dcu_pump_switch" name="dcu_eva2_pump" value="true" onChange="this.form.submit()">
@@ -312,6 +369,9 @@
                                                 <input type='hidden' name='dcu_eva2_pump' value="false">
                                             </label>
                                         </form>
+                                        <span class="dcuStateInfo">
+                                            OPEN
+                                        </span>
                                     </div>
                                     <div class="dcuStateInfoContainer">
                                         <span class="dcuStateInfo">
@@ -322,11 +382,14 @@
                             </div>
                             <div class="roomDataMainBodyContainer">
                                 <div class="roomDataMainBodySubContainer">
-                                    <div class="dcuStateSensorContainer">
+                                    <div class="dcuStateSensorContainer dcuStatus">
                                         <div id="eva2CommSensor" class="dcuStateSensor">
                                         </div>
                                     </div>
                                     <div class="dcuStateSensorContainer">
+                                        <span class="dcuStateInfo dcuStateInfoLeft">
+                                            B
+                                        </span>
                                         <form action="" method="post">
                                             <label class="switch">
                                                 <input type="checkbox" id="eva2_dcu_comm_switch" name="dcu_eva2_comm" value="true" onChange="this.form.submit()">
@@ -334,17 +397,23 @@
                                                 <input type='hidden' name='dcu_eva2_comm' value="false">
                                             </label>
                                         </form>
+                                        <span class="dcuStateInfo">
+                                            A
+                                        </span>
                                     </div>
                                     <div class="dcuStateInfoContainer">
                                         <span class="dcuStateInfo">
                                             COMMS
                                         </span>
                                     </div>
-                                    <div class="dcuStateSensorContainer">
+                                    <div class="dcuStateSensorContainer dcuStatus">
                                         <div id="eva2Co2Sensor" class="dcuStateSensor">
                                         </div>
                                     </div>
                                     <div class="dcuStateSensorContainer">
+                                        <span class="dcuStateInfo dcuStateInfoLeft">
+                                            B
+                                        </span>
                                         <form action="" method="post">
                                             <label class="switch">
                                                 <input type="checkbox" id="eva2_dcu_co2_switch" name="dcu_eva2_co2" value="true" onChange="this.form.submit()">
@@ -352,6 +421,9 @@
                                                 <input type='hidden' name='dcu_eva2_co2' value="false">
                                             </label>
                                         </form>
+                                        <span class="dcuStateInfo">
+                                            A
+                                        </span>
                                     </div>
                                     <div class="dcuStateInfoContainer">
                                         <span class="dcuStateInfo">

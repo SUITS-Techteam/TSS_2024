@@ -152,10 +152,15 @@
   color: var(--white);
   font-size: .85rem;
   white-space: nowrap;
+  width: 25%;
+}
+
+.dcuStateInfoLeft {
+  text-align: right;
 }
 
 .dcuStateSensorContainer {
-  width: 10%;
+  width: 25%;
   position: relative;
   display: flex;
   align-items: center;
@@ -171,12 +176,16 @@
 }
 
 .dcuStateSensorContainer {
-  width: 10%;
+  width: 40%;
   position: relative;
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
   justify-content: center;
+}
+
+.dcuStatus {
+  width: 10%;
 }
 
 .switch {
