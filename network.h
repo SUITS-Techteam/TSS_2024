@@ -44,6 +44,7 @@
 struct client_info_t {
     socklen_t address_length;
     struct sockaddr_storage address;
+    struct sockaddr_in udp_addr;
     SOCKET socket;
     char request[MAX_REQUEST_SIZE+1];
     int received;
@@ -61,13 +62,17 @@ const char* get_content_type(const char* path);
 
 SOCKET create_socket(char* hostname, char* port);
 
+SOCKET create_udp_socket(char* hostname, char* port);
+
 struct client_info_t* get_client(struct client_info_t** clients, SOCKET socket);
+
+void drop_udp_client(struct client_info_t** clients, struct client_info_t* client);
 
 void drop_client(struct client_info_t** clients, struct client_info_t* client);
 
 const char* get_client_address(struct client_info_t* client);
 
-fd_set wait_on_clients(struct client_info_t* clients, SOCKET server);
+fd_set wait_on_clients(struct client_info_t* clients, SOCKET server, SOCKET udp_socket);
 
 void send_400(struct client_info_t* client);
 

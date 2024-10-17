@@ -4,6 +4,9 @@
 #include <stdbool.h>
 #include <time.h>
 #include <stdint.h>
+#include "cJSON.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 ///////////////////////////////////////////////////////////////////////////////////
 //                                  Simulation Values
@@ -262,5 +265,16 @@ float fourier_sin(float x);
 float randomized_sine_value(float x, float avg, float amp, float phase, float freq);
 void simulate_telemetry(struct telemetry_data_t telemetry);
 void simulate_backend  (struct backend_data_t* backend);
+
+// UDP functions
+bool udp_get_dcu(unsigned char* request_content, int eva);
+bool udp_get_uia(unsigned char* request_content);
+bool udp_get_spec(unsigned char* request_content, int eva);
+bool udp_get_imu(unsigned char* request_content, int eva);
+bool udp_get_error(unsigned char* request_content);
+bool udp_get_rover(unsigned char* request_content);
+bool udp_get_comm(unsigned char* request_content);
+bool udp_get_teams(unsigned char* request_content);
+void handle_udp_get_request(unsigned char* request, unsigned char* response);
 
 #endif

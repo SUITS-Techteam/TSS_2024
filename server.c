@@ -8,6 +8,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <time.h>
+#include "cJSON.h"
 
 // Networking Headers
 #include "network.h"
@@ -15,8 +16,11 @@
 // Application
 #include "server_data.h"
 
+// Server Variables
+
 // Uncomment this for extra print statements
 // #define VERBOSE_MODE 
+// #define TESTING_MODE
 
 ///////////////////////////////////////////////////////////////////////////////////
 //                      Helper Functions Declarations
@@ -44,17 +48,42 @@ int main(int argc, char* argv[])
 
     // ----------------- Begin Main Program Space -------------------------
 
+    bool udp_server = false;
+
     // Check for running in local host
     char hostname[16];
     char port[6] = "14141";
     if(argc > 1 && strcmp(argv[1], "--local") == 0){
         strcpy(hostname, "127.0.0.1");
+        if (argc > 2 && strcmp(argv[2], "--udp") == 0){
+            udp_server = true;
+        }
+        
     } else {
         get_ip_address(hostname);
+        if(strcmp(argv[1], "--udp") == 0){
+            udp_server = true;
+        }
     }
+
     printf("Launching Server at IP: %s:%s\n", hostname, port);
 
-    SOCKET server = create_socket(hostname, port);
+    SOCKET server;
+    SOCKET udp_socket;
+
+    // Create server sockets 
+    if(udp_server){
+        server = create_udp_socket(hostname, port);
+        if (server == -1){
+            perror("Problem createing socket");
+
+            return EXIT_FAILURE;
+        }
+    }
+    else{
+        server = create_socket(hostname, port);
+        udp_socket = create_udp_socket(hostname, port);
+    }
 
     // "Data Base" Data
     struct backend_data_t* backend = init_backend(backend);
@@ -62,10 +91,51 @@ int main(int argc, char* argv[])
     // Client connection Data
     struct client_info_t* clients = NULL;
 
-    while(1){
+    // Start UDP server
+    while(udp_server){
 
         fd_set reads;
-        reads = wait_on_clients(clients, server);
+        reads = wait_on_clients(clients, server, server);
+
+        if(FD_ISSET(server, &reads)){
+            struct client_info_t* client = get_client(&clients, -1);
+
+            client->socket = server;
+
+            int received_bytes = recvfrom(server, client->request, MAX_REQUEST_SIZE, 0, (struct sockaddr*)&client->udp_addr, &client->address_length);
+
+            //check if it's a GET request
+            if (strncmp(client->request, "GET/", 4) == 0){
+                printf("Received a GET request from %s:%d \n", inet_ntoa(client->udp_addr.sin_addr), ntohs(client->udp_addr.sin_port));
+
+                char buffer[64] = {0};
+                udp_get_dcu(buffer, 1);
+
+                printf("Buffer: %s\n", buffer);
+
+                sendto(server, buffer, sizeof(buffer) + 1, 0, (struct sockaddr*)&client->udp_addr, client->address_length);
+
+                drop_udp_client(&clients, client);
+
+            }
+            //check if it's a POST request
+            else if (strncmp(client->request, "POST/", 5) == 0){
+                printf("Received a POST request from %s:%d \n", inet_ntoa(client->udp_addr.sin_addr), ntohs(client->udp_addr.sin_port));
+            }
+        }
+
+        if(!continue_server()){
+            break;
+        }
+
+        simulate_backend(backend);
+    }
+    
+    // Start HTTP server
+    while(!udp_server){
+
+        fd_set reads;
+        reads = wait_on_clients(clients, server, udp_socket);
 
         // Server Listen Socket got a new message
         if(FD_ISSET(server, &reads)){
@@ -86,6 +156,35 @@ int main(int argc, char* argv[])
             }
             #endif
 
+        }
+
+        // Handle UDP
+        if(FD_ISSET(udp_socket, &reads)){
+
+            struct client_info_t* udp_clients = NULL;
+            struct client_info_t* client = get_client(&udp_clients, -1);
+
+            int received_bytes = recvfrom(udp_socket, client->request, MAX_REQUEST_SIZE, 0, (struct sockaddr*)&client->udp_addr, &client->address_length);
+
+            //check if it's a GET request
+            if (strncmp(client->request, "GET/", 4) == 0){
+                printf("Received a GET request from %s:%d \n", inet_ntoa(client->udp_addr.sin_addr), ntohs(client->udp_addr.sin_port));
+                printf("Received: %s.\n", client->request);
+
+                unsigned char response_buffer[256] = {0};
+                handle_udp_get_request(client->request, response_buffer);
+
+                sendto(udp_socket, response_buffer, sizeof(response_buffer) + 1, 0, (struct sockaddr*)&client->udp_addr, client->address_length);
+
+                printf("Buffer: %s -- Sent to %s:%d\n", response_buffer, inet_ntoa(client->udp_addr.sin_addr), ntohs(client->udp_addr.sin_port));
+
+                drop_udp_client(&udp_clients, client);
+
+            }
+            //check if it's a POST request
+            else if (strncmp(client->request, "POST/", 5) == 0){
+                printf("Received a POST request from %s:%d \n", inet_ntoa(client->udp_addr.sin_addr), ntohs(client->udp_addr.sin_port));
+            }
         }
 
         // Server-Client Socket got a new message
@@ -116,6 +215,10 @@ int main(int argc, char* argv[])
                     drop_client(&clients, client);
                 } else {
 
+                    if(strncmp(client->request, "GET/", 4) == 0){
+                        printf("UDP request\n");
+                    }
+
                     client->received += bytes_received;
                     client->request[client->received] = 0;
 
@@ -135,7 +238,7 @@ int main(int argc, char* argv[])
                                 *end_path = 0;
                                 serve_resource(client, path);
                                 #ifdef VERBOSE_MODE
-                                // printf("serve_resource %s %s\n", get_client_address(client), path);
+                                printf("serve_resource %s %s\n", get_client_address(client), path);
                                 #endif
                                 drop_client(&clients, client);
                             }
@@ -206,6 +309,8 @@ int main(int argc, char* argv[])
 
     printf("Closing Sockets...\n");
     CLOSESOCKET(server);
+    close(udp_socket);
+
     printf("Cleaned up server listen sockets\n");
     int leftover_clients = 0;
     struct client_info_t* client = clients;

@@ -76,6 +76,34 @@ const char* get_content_type(const char* path){
     return "application/octet-stream";
 }
 
+SOCKET create_udp_socket(char* hostname, char* port){
+
+    struct sockaddr_in server_addr;
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = inet_addr(hostname);
+    server_addr.sin_port= htons(atoi(port));
+
+    printf("Creating UDP Socket...\n");
+    SOCKET server_socket = socket(AF_INET, SOCK_DGRAM, 0);
+    if (server_socket == -1){
+        perror("Failed to create socket.");
+
+        return -1;
+    }
+
+    printf("Binding UDP Socket...\n");
+    int bind_result = bind(server_socket, (struct sockaddr*)&server_addr, sizeof(server_addr));
+    if(bind_result == -1){
+        perror("Failed to bind...");
+
+        return -1;
+    }
+
+    printf("Listening to UDP Socket...\n");
+
+    return server_socket;
+}
+
 SOCKET create_socket(char* hostname, char* port){
    
     printf("Configuring Local Address...\n");
@@ -90,7 +118,7 @@ SOCKET create_socket(char* hostname, char* port){
         exit(1);
     }
 
-    printf("Creating Socket...\n");
+    printf("Creating HTTP Socket...\n");
     SOCKET socket_listen;
     socket_listen = socket(bind_address->ai_family, bind_address->ai_socktype, bind_address->ai_protocol);
     if(!ISVALIDSOCKET(socket_listen)){
@@ -101,14 +129,14 @@ SOCKET create_socket(char* hostname, char* port){
     char c = 1;
     setsockopt(socket_listen, SOL_SOCKET, SO_REUSEADDR, &c, sizeof(int));
     
-    printf("Binding Socket...\n");
+    printf("Binding HTTP Socket...\n");
     if(bind(socket_listen, bind_address->ai_addr, bind_address->ai_addrlen)){
         fprintf(stderr, "bind() failed with error: %d", GETSOCKETERRNO());
         CLOSESOCKET(socket_listen);
         exit(1);
     }
 
-    printf("Listening...\n");
+    printf("Listening to HTTP Socket...\n");
     if(listen(socket_listen, 10) > 0){
         fprintf(stderr, "listen() failed with error: %d", GETSOCKETERRNO());
         exit(1);
@@ -155,6 +183,24 @@ struct client_info_t* get_client(struct client_info_t** clients, SOCKET socket){
 
 }
 
+void drop_udp_client(struct client_info_t** clients, struct client_info_t* client){
+
+    struct client_info_t** p = clients;
+
+    while(*p){
+        if(*p == client){
+            *p = client->next;
+            free(client);
+            return;
+        }
+        p = & ((*p)->next);
+    }
+
+    fprintf(stderr, "drop_client: client not found\n");
+    exit(1);
+
+}
+
 void drop_client(struct client_info_t** clients, struct client_info_t* client){
     
     CLOSESOCKET(client->socket);
@@ -181,7 +227,7 @@ const char* get_client_address(struct client_info_t* client){
     return address_buffer;
 }
 
-fd_set wait_on_clients(struct client_info_t* clients, SOCKET server){
+fd_set wait_on_clients(struct client_info_t* clients, SOCKET server, SOCKET udp_socket){
 
     struct timeval select_wait;
     select_wait.tv_sec = 0;
@@ -190,7 +236,8 @@ fd_set wait_on_clients(struct client_info_t* clients, SOCKET server){
     fd_set reads;
     FD_ZERO(&reads);
     FD_SET(server, &reads);
-    SOCKET max_socket = server;
+    FD_SET(udp_socket, &reads);
+    SOCKET max_socket = server > udp_socket ? server : udp_socket;
 
     // Push all the clients to reads
     struct client_info_t* client = clients;
@@ -203,6 +250,7 @@ fd_set wait_on_clients(struct client_info_t* clients, SOCKET server){
     }
 
     // Wait on sockets
+    //printf("This select. \n");
     if(select(max_socket+1, &reads, 0, 0, &select_wait) < 0){
         fprintf(stderr, "select() failed with error: %d", GETSOCKETERRNO());
         exit(1);

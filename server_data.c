@@ -14,6 +14,112 @@
 //                                 Functions
 ///////////////////////////////////////////////////////////////////////////////////
 
+// --------------------------Handle UDP Request-------------------------------
+
+void handle_udp_get_request(unsigned char* request, unsigned char* response){
+    char* request_type = request + 4;
+    char* request_end = strstr(request_type, "/");
+
+    *request_end = '\0';
+    printf("Request type: %s\n", request_type);
+
+    if(strcmp(request_type, "TEAMS") == 0){
+        udp_get_teams(response);
+    }
+    else if(strcmp(request_type, "COMM") == 0){
+        udp_get_comm(response);
+    }
+    else if(strcmp(request_type, "ROVER") == 0){
+        udp_get_rover(response);
+    }
+    else if(strcmp(request_type, "ERROR") == 0){
+        udp_get_error(response);
+    }
+    else if(strcmp(request_type, "IMU") == 0){
+        
+        udp_get_imu(response, 0);
+    }
+    else if(strcmp(request_type, "SPEC") == 0){
+        udp_get_spec(response, 0);
+    }
+    else if(strcmp(request_type, "UIA") == 0){
+        udp_get_uia(response);
+    }
+    else if(strcmp(request_type, "DCU") == 0){
+        udp_get_dcu(response, 0);
+    }
+    else{
+        printf("Request not found.\n");
+    }
+
+}
+
+// --------------------------UDP Get Teams---------------------------
+
+char* itoa(int val, int base){
+	
+	static char buf[32] = {0};
+	
+	int i = 30;
+	
+	for(; val && i ; --i, val /= base)
+	
+		buf[i] = "0123456789abcdef"[val % base];
+	
+	return &buf[i+1];
+	
+}
+
+bool udp_get_teams(unsigned char* request_content){
+    //Open file
+    FILE* fp = fopen("public/json_data/TEAMS.json", "r");
+    if (fp == NULL) { 
+        printf("Error: Unable to open the file.\n"); 
+        return false; 
+    } 
+
+    //Get file size
+    fseek(fp, 0L, SEEK_END);
+    unsigned int file_size = ftell(fp);
+    rewind(fp);
+
+    //printf("file size: %d\n", file_size);
+
+    //Save file to buffer
+    char file_buffer[file_size]; 
+    int len = fread(file_buffer, 1, file_size, fp); 
+    fclose(fp); 
+
+    //Parse buffer to cJSON object
+    cJSON *json = cJSON_Parse(file_buffer); 
+    if (json == NULL) { 
+        const char *error_ptr = cJSON_GetErrorPtr(); 
+        if (error_ptr != NULL) { 
+            printf("Error: %s\n", error_ptr); 
+        } 
+        cJSON_Delete(json); 
+        return false; 
+    } 
+
+    cJSON* teams = cJSON_GetObjectItemCaseSensitive(json, "teams");
+    cJSON* team = teams->child;
+
+    while (team != NULL){
+        if (cJSON_IsNumber(team) == true){
+        
+            char* temp = itoa(team->valueint, 10);
+            strcat(request_content, temp);
+
+            break;
+        }
+
+        strcat(request_content, team->valuestring);
+        strcat(request_content, "\n");
+        team = team->next;
+    }
+    
+}
+
 // -------------------------- INIT --------------------------------
 struct backend_data_t* init_backend(){
 
@@ -194,6 +300,49 @@ bool update_uia(char* request_content, struct uia_data_t* uia){
 
 }
 
+bool udp_get_uia(unsigned char* request_content){
+    //Open file
+    FILE* fp = fopen("public/json_data/UIA.json", "r");
+    if (fp == NULL) { 
+        printf("Error: Unable to open the file.\n"); 
+        return false; 
+    } 
+
+    //Get file size
+    fseek(fp, 0L, SEEK_END);
+    unsigned int file_size = ftell(fp);
+    rewind(fp);
+
+    //printf("file size: %d\n", file_size);
+
+    //Save file to buffer
+    char file_buffer[file_size]; 
+    int len = fread(file_buffer, 1, file_size, fp); 
+    fclose(fp); 
+
+    //Parse buffer to cJSON object
+    cJSON *json = cJSON_Parse(file_buffer); 
+    if (json == NULL) { 
+        const char *error_ptr = cJSON_GetErrorPtr(); 
+        if (error_ptr != NULL) { 
+            printf("Error: %s\n", error_ptr); 
+        } 
+        cJSON_Delete(json); 
+        return false; 
+    } 
+
+    cJSON* uia = cJSON_GetObjectItemCaseSensitive(json, "uia");
+    cJSON* uia_item = uia->child;
+
+    while(uia_item != NULL){
+        strcat(request_content, cJSON_IsTrue(uia_item) ? "T" : "F");
+        uia_item = uia_item->next;
+    }
+
+    cJSON_Delete(json);
+    return true;
+}
+
 // -------------------------- DCU --------------------------------
 bool build_json_dcu(struct dcu_data_t* dcu){
 
@@ -323,6 +472,65 @@ bool update_dcu(char* request_content, struct dcu_data_t* dcu){
 
 }
 
+bool udp_get_dcu(unsigned char* request_content, int eva){
+
+    //Open file
+    FILE* fp = fopen("public/json_data/DCU.json", "r");
+    if (fp == NULL) { 
+        printf("Error: Unable to open the file.\n"); 
+        return false; 
+    } 
+
+    //Get file size
+    fseek(fp, 0L, SEEK_END);
+    unsigned int file_size = ftell(fp);
+    rewind(fp);
+
+    printf("file size: %d\n", file_size);
+
+    //Save file to buffer
+    char file_buffer[file_size]; 
+    int len = fread(file_buffer, 1, file_size, fp); 
+    fclose(fp); 
+
+    //Parse buffer to cJSON object
+    cJSON *json = cJSON_Parse(file_buffer); 
+    if (json == NULL) { 
+        const char *error_ptr = cJSON_GetErrorPtr(); 
+        if (error_ptr != NULL) { 
+            printf("Error: %s\n", error_ptr); 
+        } 
+        cJSON_Delete(json); 
+        return false; 
+    } 
+    cJSON* dcu = cJSON_GetObjectItemCaseSensitive(json, "dcu");
+    cJSON* eva1 = dcu->child;
+    cJSON* eva2 = eva1->next;
+
+    cJSON* eva1_item = eva1->child;
+    cJSON* eva2_item = eva2->child;
+
+    if(eva == 1 || eva != 2){
+        while (eva1_item != NULL){
+        printf("Eva1: %s:%s\n", eva1_item->string, cJSON_IsTrue(eva1_item) ? "true" : "false");
+        strcat(request_content, cJSON_IsTrue(eva1_item) ? "T" : "F");
+
+        eva1_item = eva1_item->next;
+        }
+    }
+    else if(eva == 2 || eva != 1){
+        while (eva2_item != NULL){
+            printf("Eva2: %s:%s\n", eva2_item->string, cJSON_IsTrue(eva2_item) ? "true" : "false");
+            strcat(request_content, cJSON_IsTrue(eva2_item) ? "T" : "F");
+
+            eva2_item = eva2_item->next;
+        }
+    }
+    
+    cJSON_Delete(json);
+    return true;
+}
+
 // -------------------------- IMU --------------------------------
 bool build_json_imu(struct imu_data_t* imu){
 
@@ -407,6 +615,90 @@ bool update_imu(char* request_content, struct imu_data_t* imu){
 
 }
 
+bool udp_get_imu(unsigned char* request_content, int eva){
+    //Open file
+    FILE* fp = fopen("public/json_data/IMU.json", "r");
+    if (fp == NULL) { 
+        printf("Error: Unable to open the file.\n"); 
+        return false; 
+    } 
+
+    //Get file size
+    fseek(fp, 0L, SEEK_END);
+    unsigned int file_size = ftell(fp);
+    rewind(fp);
+
+    //printf("file size: %d\n", file_size);
+
+    //Save file to buffer
+    char file_buffer[file_size]; 
+    int len = fread(file_buffer, 1, file_size, fp); 
+    fclose(fp); 
+
+    //Parse buffer to cJSON object
+    cJSON *json = cJSON_Parse(file_buffer); 
+    if (json == NULL) { 
+        const char *error_ptr = cJSON_GetErrorPtr(); 
+        if (error_ptr != NULL) { 
+            printf("Error: %s\n", error_ptr); 
+        } 
+        cJSON_Delete(json); 
+        return false; 
+    } 
+
+    union {
+        float fl;
+        unsigned char temp[4];
+    } u;
+    
+    cJSON* imu = cJSON_GetObjectItemCaseSensitive(json, "imu");
+    cJSON* eva1 = imu->child;
+    cJSON* eva2 = eva1->next;
+
+    cJSON* eva1_pos = eva1->child;
+    cJSON* eva2_pos = eva2->child;
+
+    int idx = 0;
+    if (eva != 2){
+        while(eva1_pos != NULL){
+            u.fl = eva1_pos->valueint; 
+            memcpy(request_content + idx, u.temp, 4);
+
+            idx += 4;
+            eva1_pos = eva1_pos->next;
+        }
+    }
+    if (eva != 1){
+        while (eva2_pos != NULL){
+            u.fl = eva2_pos->valueint;
+            memcpy(request_content + idx, u.temp, 4);
+
+            idx += 4;
+            eva2_pos = eva2_pos->next;
+        }
+        
+    }
+
+    #ifdef TESTING_MODE
+    printf("idx at end: %d\n", idx);
+    for (int i = 0; i < idx; i++){
+        if (i == 0){
+            printf("IMU Whole buffer: %02x", request_content[i]);
+        }
+        else{
+            printf("%02x", request_content[i]);
+
+            if (i == idx - 1){
+                printf("\n");
+            }
+        }
+    }
+    #endif
+
+
+    return true;
+}
+
 // -------------------------- ROVER --------------------------------
 bool build_json_rover(struct rover_data_t* rover){
 
@@ -455,6 +747,73 @@ bool update_rover(char* request_content, struct rover_data_t* rover){
 
     // if a value was updated
     build_json_rover(rover);
+
+    return true;
+
+}
+bool udp_get_rover(unsigned char* request_content){
+    FILE* fp = fopen("public/json_data/ROVER.json", "r");
+    if (fp == NULL) { 
+        printf("Error: Unable to open the file.\n"); 
+        return false; 
+    } 
+
+    //Get file size
+    fseek(fp, 0L, SEEK_END);
+    unsigned int file_size = ftell(fp);
+    rewind(fp);
+
+    //printf("file size: %d\n", file_size);
+
+    //Save file to buffer
+    char file_buffer[file_size]; 
+    int len = fread(file_buffer, 1, file_size, fp); 
+    fclose(fp); 
+
+    //Parse buffer to cJSON object
+    cJSON *json = cJSON_Parse(file_buffer); 
+    if (json == NULL) { 
+        const char *error_ptr = cJSON_GetErrorPtr(); 
+        if (error_ptr != NULL) { 
+            printf("Error: %s\n", error_ptr); 
+        } 
+        cJSON_Delete(json); 
+        return false; 
+    } 
+
+    union{
+        float fl;
+        unsigned char temp[4];
+    } u;
+
+    cJSON* rover = cJSON_GetObjectItemCaseSensitive(json, "rover");
+    cJSON* rover_item = rover->child;
+
+    int idx = 0;
+    for (int i = 0; i < 2; i++){
+        u.fl = rover_item->valueint;
+        memcpy(request_content + idx, u.temp, 4);
+
+        idx += 4;
+        rover_item = rover_item->next;
+    }
+
+    request_content[idx] = rover_item->valueint & 0xff;
+
+    #ifdef TESTING_MODE
+    for (int i = 0; i < 3; i++){
+        if (i == 0){
+            printf("ROVER Whole buffer: %02x", request_content[i]);
+        }
+        else{
+            printf("%02x", request_content[i]);
+
+            if(i == 2){
+                printf("\n");
+            }
+        }
+    }
+    #endif
 
     return true;
 
@@ -546,6 +905,178 @@ bool update_spec(char* request_content, struct spec_data_t* spec){
 
 }
 
+bool udp_get_spec(unsigned char* request_content, int eva){
+    //Open file
+    FILE* fp = fopen("public/json_data/SPEC.json", "r");
+    if (fp == NULL) { 
+        printf("Error: Unable to open the file.\n"); 
+        return false; 
+    } 
+
+    //Get file size
+    fseek(fp, 0L, SEEK_END);
+    unsigned int file_size = ftell(fp);
+    rewind(fp);
+
+    //printf("file size: %d\n", file_size);
+
+    //Save file to buffer
+    char file_buffer[file_size]; 
+    int len = fread(file_buffer, 1, file_size, fp); 
+    fclose(fp); 
+
+    //Parse buffer to cJSON object
+    cJSON *json = cJSON_Parse(file_buffer); 
+    if (json == NULL) { 
+        const char *error_ptr = cJSON_GetErrorPtr(); 
+        if (error_ptr != NULL) { 
+            printf("Error: %s\n", error_ptr); 
+        } 
+        cJSON_Delete(json); 
+        return false; 
+    } 
+
+    cJSON* spec = cJSON_GetObjectItemCaseSensitive(json, "spec");
+    cJSON* eva1 = spec->child;
+    cJSON* eva2 = eva1->next;
+
+    cJSON* eva1_name = eva1->child;
+    cJSON* eva1_id = eva1_name->next;
+    cJSON* eva2_name = eva2->child;
+    cJSON* eva2_id = eva2_name->next;
+
+    int idx = 0;
+    if(eva != 2){
+        
+        unsigned int name_len = strlen(eva1_name->valuestring);
+        strncpy(request_content + idx + 1, eva1_name->valuestring, name_len);
+        request_content[idx] = name_len & 0xff;
+
+        request_content[name_len + idx + 1] = eva1_id->valueint & 0xff;
+        idx = idx + name_len + 2;
+
+        #ifdef TESTING_MODE
+        for (int i = 0; i < idx; i++){
+            if(i == 0){
+                printf("SPEC Buffer after id: %02x", request_content[i]);
+            }
+            else{
+                printf("%02x", request_content[i]);
+
+                if(i == (idx - 1)){
+                    printf("\n");
+                }
+            }
+        }
+        #endif
+       
+        cJSON* data_item = eva1_id->next->child;
+        while (data_item != NULL){
+            unsigned int percent = data_item->valueint;
+
+            request_content[idx++] = percent & 0xff;
+            data_item = data_item->next;
+        }
+
+        #ifdef TESTING_MODE
+        idx -= 10;
+        for (int i = 0; i < 10; i++){
+            if(i == 0){
+                printf("SPEC ints: %02x", request_content[idx]);
+            }
+            else{
+                printf("%02x", request_content[idx]);
+
+                if(i == (9)){
+                    printf("\n");
+                }
+            }
+            idx++;
+        }
+
+        for (int i = 0; i < idx; i++){
+            if(i == 0){
+                printf("SPEC Whole buffer: %02x", request_content[i]);
+            }
+            else{
+                printf("%02x", request_content[i]);
+
+                if(i == (idx - 1)){
+                    printf("\n");
+                }
+            }
+        }
+        #endif
+    }
+
+    if(eva != 1){
+
+        unsigned int name_len = strlen(eva2_name->valuestring);
+        request_content[idx] = name_len & 0xff;
+        strncpy(request_content + idx + 1, eva2_name->valuestring, name_len);
+
+        unsigned int id = eva2_id->valueint;
+        request_content[name_len + idx + 1] = id & 0xff;
+        idx = idx + name_len + 2;
+
+        #ifdef TESTING_MODE
+        for (int i = 0; i < idx; i++){
+            if(i == 0){
+                printf("SPEC buffer after id: %02x", request_content[i]);
+            }
+            else{
+                printf("%02x", request_content[i]);
+
+                if(i == (idx - 1)){
+                    printf("\n");
+                }
+            }
+        }
+        #endif
+
+        cJSON* data_item = eva2_id->next->child;
+        while (data_item != NULL){
+            unsigned int percent = data_item->valueint;
+
+            request_content[idx++] = percent & 0xff;
+            data_item = data_item->next;
+        }
+
+        #ifdef TESTING_MODE
+        idx -= 10;
+        for (int i = 0; i < 10; i++){
+            if(i == 0){
+                printf("SPEC ints: %02x", request_content[idx]);
+            }
+            else{
+                printf("%02x", request_content[idx]);
+
+                if(i == (9)){
+                    printf("\n");
+                }
+            }
+            idx++;
+        }
+        for (int i = 0; i < idx; i++){
+            if(i == 0){
+                printf("SPEC Whole buffer: %02x", request_content[i]);
+            }
+            else{
+                printf("%02x", request_content[i]);
+
+                if(i == (idx - 1)){
+                    printf("\n");
+                }
+            }
+        }
+        #endif
+        
+    }
+   
+
+    return true;
+}
+
 // -------------------------- COMM --------------------------------
 bool build_json_comm(struct comm_data_t* comm){
 
@@ -595,6 +1126,44 @@ bool update_comm(char* request_content, struct comm_data_t* comm){
 
     return true;
 
+}
+
+bool udp_get_comm(unsigned char* request_content){
+    //Open file
+    FILE* fp = fopen("public/json_data/COMM.json", "r");
+    if (fp == NULL) { 
+        printf("Error: Unable to open the file.\n"); 
+        return false; 
+    } 
+
+    //Get file size
+    fseek(fp, 0L, SEEK_END);
+    unsigned int file_size = ftell(fp);
+    rewind(fp);
+
+    //printf("file size: %d\n", file_size);
+
+    //Save file to buffer
+    char file_buffer[file_size]; 
+    int len = fread(file_buffer, 1, file_size, fp); 
+    fclose(fp); 
+
+    //Parse buffer to cJSON object
+    cJSON *json = cJSON_Parse(file_buffer); 
+    if (json == NULL) { 
+        const char *error_ptr = cJSON_GetErrorPtr(); 
+        if (error_ptr != NULL) { 
+            printf("Error: %s\n", error_ptr); 
+        } 
+        cJSON_Delete(json); 
+        return false; 
+    } 
+
+    cJSON* comm = cJSON_GetObjectItemCaseSensitive(json, "comm");
+    cJSON* comm_bool = comm->child;
+
+    strcat(request_content, cJSON_IsTrue(comm_bool) ? "T" : "F");
+    printf("Comm: %s\n", request_content);
 }
 
 // -------------------------- ERROR --------------------------------
@@ -674,6 +1243,48 @@ bool update_error(char* request_content, struct eva_failures_t* error){
 
     return false;
 
+}
+
+bool udp_get_error(unsigned char* request_content){
+    //Open file
+    FILE* fp = fopen("public/json_data/ERROR.json", "r");
+    if (fp == NULL) { 
+        printf("Error: Unable to open the file.\n"); 
+        return false; 
+    } 
+
+    //Get file size
+    fseek(fp, 0L, SEEK_END);
+    unsigned int file_size = ftell(fp);
+    rewind(fp);
+
+    //printf("file size: %d\n", file_size);
+
+    //Save file to buffer
+    char file_buffer[file_size]; 
+    int len = fread(file_buffer, 1, file_size, fp); 
+    fclose(fp); 
+
+    //Parse buffer to cJSON object
+    cJSON *json = cJSON_Parse(file_buffer); 
+    if (json == NULL) { 
+        const char *error_ptr = cJSON_GetErrorPtr(); 
+        if (error_ptr != NULL) { 
+            printf("Error: %s\n", error_ptr); 
+        } 
+        cJSON_Delete(json); 
+        return false; 
+    } 
+
+    cJSON* error = cJSON_GetObjectItemCaseSensitive(json, "error");
+    cJSON* error_type = error->child;
+
+    while(error_type != NULL){
+        strcat(request_content, cJSON_IsTrue(error_type) ? "T" : "F");
+        error_type = error_type->next;
+    }
+
+    return true;
 }
 
 // -------------------------- EVA --------------------------------
