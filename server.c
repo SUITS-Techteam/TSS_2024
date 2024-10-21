@@ -61,9 +61,6 @@ int main(int argc, char* argv[])
         
     } else {
         get_ip_address(hostname);
-        if(strcmp(argv[1], "--udp") == 0){
-            udp_server = true;
-        }
     }
 
     printf("Launching Server at IP: %s:%s\n", hostname, port);
@@ -91,7 +88,7 @@ int main(int argc, char* argv[])
     // Client connection Data
     struct client_info_t* clients = NULL;
 
-    // Start UDP server
+    // Start UDP-only server
     while(udp_server){
 
         fd_set reads;

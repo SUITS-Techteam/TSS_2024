@@ -3,19 +3,19 @@
 	"spec": {
 		"eva1": 
 		{
-            "name": "default_rock",
-            "id" : 0,
+            "name": "mare_basalt",
+            "id" : 1,
             "data": {
-                "SiO2": 1,
-                "TiO2": 1,
-                "Al2O3": 1,
-                "FeO": 1,
-                "MnO": 1,
-                "MgO": 1,
-                "CaO": 1,
-                "K2O": 1,
-                "P2O3": 1,
-                "other" : 91 
+                "SiO2": 30.75,
+                "TiO2": 0.92,
+                "Al2O3": 4.88,
+                "FeO": 17.12,
+                "MnO": 0.2,
+                "MgO": 12.95,
+                "CaO": 2.03,
+                "K2O": 0.22,
+                "P2O3": 0.69,
+                "other" : 30.24
             }
         },
 		"eva2": 
