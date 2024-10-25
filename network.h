@@ -14,7 +14,6 @@
     #pragma comment(lib, "ws2_32.lib")
     #pragma comment(lib, "iphlpapi.lib")
 
-
     #define ISVALIDSOCKET(s) ((s) != INVALID_SOCKET)
     #define CLOSESOCKET(s) closesocket(s)
     #define GETSOCKETERRNO() (WSAGetLastError())

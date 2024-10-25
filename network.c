@@ -18,40 +18,158 @@ void get_ip_address(char* hostname_out){
     memset(hostname_out, 0, 16);
     strcpy(hostname_out, "127.0.0.1");
 
-    // Get all addresses
-    struct ifaddrs *addresses;
-    if (getifaddrs(&addresses) == -1) {
-        printf("getifaddrs call failed\n");
+ #if defined(_WIN32)
+     //PIP_ADAPTER_ADDRESSES addresses = NULL;
+     //ULONG outBufLen = 15000;
+     //addresses = (IP_ADAPTER_ADDRESSES *) malloc(outBufLen);
+     //ULONG flags = GAA_FLAG_INCLUDE_PREFIX;
+
+     //// default to unspecified address family (both)
+     //ULONG family = AF_INET;
+
+     //if(GetAdaptersAddresses(family, flags, NULL, addresses, &outBufLen) == -1) {
+     //    //GetAdaptersAddresses(family, flags, NULL, pAddresses, &outBufLen);
+     //    printf("GetAdaptersAddresses call failed\n");
+     //    return;
+     //}
+     //PIP_ADAPTER_ADDRESSES pCurrAddresses = NULL;
+     //PIP_ADAPTER_UNICAST_ADDRESS pUnicast = NULL;
+     //PIP_ADAPTER_ANYCAST_ADDRESS pAnycast = NULL;
+     //PIP_ADAPTER_MULTICAST_ADDRESS pMulticast = NULL;
+
+     //PIP_ADAPTER_ADDRESSES currAddresses = addresses;
+     //while (currAddresses) {
+     //        printf("\tLength of the IP_ADAPTER_ADDRESS struct: %ld\n", currAddresses->Length);
+     //        printf("\tIfIndex (IPv4 interface): %u\n", currAddresses->IfIndex);
+     //        printf("\tAdapter name: %s\n", currAddresses->AdapterName);
+     //        if (currAddresses->PhysicalAddressLength != 0) {
+     //            printf("\tPhysical address: ");
+     //            for (int i = 0; i < (int)currAddresses->PhysicalAddressLength;
+     //                i++) {
+     //                if (i == (currAddresses->PhysicalAddressLength - 1))
+     //                    printf("%.2X\n",
+     //                        (int)currAddresses->PhysicalAddress[i]);
+     //                else
+     //                    printf("%.2X-",
+     //                        (int)currAddresses->PhysicalAddress[i]);
+     //            }
+     //        }
+     //        int i;
+     //        pUnicast = currAddresses->FirstUnicastAddress;
+     //        if (pUnicast != NULL) {
+     //            for (i = 0; pUnicast != NULL; i++) {
+     //                pUnicast->
+     //                pUnicast = pUnicast->Next;
+     //            }
+     //            printf("\tNumber of Unicast Addresses: %d\n", i);
+     //        }
+     //        else
+     //            printf("\tNo Unicast Addresses\n");
+
+     //        pAnycast = currAddresses->FirstAnycastAddress;
+     //        if (pAnycast) {
+     //            for (i = 0; pAnycast != NULL; i++)
+     //                pAnycast = pAnycast->Next;
+     //            printf("\tNumber of Anycast Addresses: %d\n", i);
+     //        }
+     //        else
+     //            printf("\tNo Anycast Addresses\n");
+
+     //        pMulticast = currAddresses->FirstMulticastAddress;
+     //        if (pMulticast) {
+     //            for (i = 0; pMulticast != NULL; i++)
+     //                pMulticast = pMulticast->Next;
+     //            printf("\tNumber of Multicast Addresses: %d\n", i);
+     //        }
+     //        else
+     //            printf("\tNo Multicast Addresses\n");
+
+     //        currAddresses = currAddresses->Next;
+     //}
+
+     //free(addresses);
+
+    PIP_ADAPTER_INFO pAdapterInfo;
+    PIP_ADAPTER_INFO pAdapter = NULL;
+    DWORD dwRetVal = 0;
+    UINT i;
+
+    /* variables used to print DHCP time info */
+    struct tm newtime;
+    char buffer[32];
+    errno_t error;
+
+    ULONG ulOutBufLen = sizeof(IP_ADAPTER_INFO);
+    pAdapterInfo = (IP_ADAPTER_INFO*)malloc(sizeof(IP_ADAPTER_INFO));
+    if (pAdapterInfo == NULL) {
+        printf("Error allocating memory needed to call GetAdaptersinfo\n");
         return;
     }
-
-    // Loop through addresses and find a non local host IP4 address
-    struct ifaddrs *address = addresses;
-    while(address) {
-        // skip if the address is NULL
-        if (address->ifa_addr == NULL) { 
-            address = address->ifa_next;
-            continue;
+    // Make an initial call to GetAdaptersInfo to get
+    // the necessary size into the ulOutBufLen variable
+    if (GetAdaptersInfo(pAdapterInfo, &ulOutBufLen) == ERROR_BUFFER_OVERFLOW) {
+        free(pAdapterInfo);
+        pAdapterInfo = (IP_ADAPTER_INFO*)malloc(ulOutBufLen);
+        if (pAdapterInfo == NULL) {
+            printf("Error allocating memory needed to call GetAdaptersinfo\n");
+            return;
         }
-
-        // Check that it is IP4
-        int family = address->ifa_addr->sa_family;
-        if (family == AF_INET) {
-
-            char ap[100];
-            const int family_size = sizeof(struct sockaddr_in);
-            getnameinfo(address->ifa_addr, family_size, ap, sizeof(ap), 0, 0, NI_NUMERICHOST);
-
-            // Check that it isn't local host
-            if(strcmp(ap, "127.0.0.1") != 0){
-                memset(hostname_out, 0, 16);
-                strcpy(hostname_out, ap);
-            }
-
-        }
-        address = address->ifa_next;
     }
-    freeifaddrs(addresses);
+
+    if ((dwRetVal = GetAdaptersInfo(pAdapterInfo, &ulOutBufLen)) == NO_ERROR) {
+        pAdapter = pAdapterInfo;
+        while (pAdapter) {
+            char* ipAddr = pAdapter->IpAddressList.IpAddress.String;
+            if (strcmp(ipAddr, "127.0.0.1") != 0 && strcmp(ipAddr, "0.0.0.0") != 0) {
+                memset(hostname_out, 0, 16);
+                strcpy(hostname_out, ipAddr);
+            }
+            
+            pAdapter = pAdapter->Next;
+        }
+    }
+    else {
+        printf("GetAdaptersInfo failed with error: %d\n", dwRetVal);
+
+    }
+    if (pAdapterInfo)
+        free(pAdapterInfo);
+
+ #else
+     // Get all addresses
+     struct ifaddrs *addresses;
+     if (getifaddrs(&addresses) == -1) {
+         printf("getifaddrs call failed\n");
+         return;
+     }
+
+     // Loop through addresses and find a non local host IP4 address
+     struct ifaddrs *address = addresses;
+     while(address) {
+         // skip if the address is NULL
+         if (address->ifa_addr == NULL) { 
+             address = address->ifa_next;
+             continue;
+         }
+
+         // Check that it is IP4
+         int family = address->ifa_addr->sa_family;
+         if (family == AF_INET) {
+
+             char ap[100];
+             const int family_size = sizeof(struct sockaddr_in);
+             getnameinfo(address->ifa_addr, family_size, ap, sizeof(ap), 0, 0, NI_NUMERICHOST);
+             // Check that it isn't local host
+             if(strcmp(ap, "127.0.0.1") != 0){
+                 memset(hostname_out, 0, 16);
+                 strcpy(hostname_out, ap);
+             }
+
+         }
+         address = address->ifa_next;
+     }
+     freeifaddrs(addresses);
+ #endif
 }
 
 const char* get_content_type(const char* path){
